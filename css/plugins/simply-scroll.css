@@ -1,0 +1,10 @@
+/* Container DIV - automatically generated */
+.simply-scroll-container { 
+	position: relative;
+}
+
+/* Clip DIV - automatically generated */
+.simply-scroll-clip { 
+	position: relative;
+	overflow: hidden;
+}

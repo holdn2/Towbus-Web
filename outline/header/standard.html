@@ -1,0 +1,108 @@
+{*** 상단 기본파일 | main/index.php ***}
+<!-- 메인화면 헤더임!!! -->
+<div id="header">
+  <div class="header_top">
+    <div class="header_top_cont">
+      <div class="header_top_gnb_logo_wrapper">
+        <div class="header_gnb">
+          <div class="gnb">
+            <!-- 전체 카테고리 출력 레이어 시작 -->
+            {=includeWidget("proc/category_all.html")}
+            <!-- 전체 카테고리 출력 레이어 끝 -->
+            <!-- 상단 카테고리 출력 시작 -->
+            <!-- {=includeWidget('proc/category_side', 'type', 'top','cateType','cate','menuType','all')} -->
+            <!-- 상단 카테고리 출력 끝 -->
+
+            <!--스크롤 게시글 시작-->
+            {=includeWidget('board/board_article_scrolling', 'bdId', noticeBdId,
+            'listCount', 10, 'strCut', 15)}
+            <!--스크롤 게시글 끝-->
+          </div>
+          <!-- //gnb -->
+
+          <!-- //gnb_allmenu -->
+        </div>
+        <!-- //header_gnb -->
+
+        <div class="h1_logo">
+          <!--{ @dataBanner('4238483832') }-->{.tag}<!--{ / }-->
+        </div>
+      </div>
+
+      <div class="header-user-menu">
+        <!-- 멀티상점 선택 -->
+        <!-- {=includeWidget('proc/_global_select.html')} -->
+        <!-- 멀티상점 선택 -->
+
+        <ul class="top_member_box">
+          <li class="top_box_text">About</li>
+          <li class="top_box_text">Product</li>
+          <li class="top_box_text">Community</li>
+          <!--{ ? gd_is_login() === false }-->
+          <!-- <li>
+            <a href="../member/login.php">Login</a><span class="txt_bar"></span>
+          </li>
+          <li> -->
+          <!-- <a href="../member/join_method.php">Join</a
+            ><span class="txt_bar"></span> -->
+          <!--<span class="accent">
+                            <span><strong>2,000 P</strong></span>
+                        </span>-->
+          <!-- </li> -->
+          <!--{ : }-->
+          <!-- <li>
+            <a href="../member/logout.php?returnUrl={=logoutReturnUrl}"
+              >Logout</a
+            ><span class="txt_bar"></span>
+          </li> -->
+          <!--{ / }-->
+          <!-- <li>
+            <div class="top_mypage_cont">
+              <span class="top_mypage_tit"
+                ><a href="../mypage/index.php">Mypage</a></span
+              >
+              <ul style="display: none">
+                <li>
+                  <a href="../mypage/order_list.php">{=__('주문조회')}</a>
+                </li>
+                <li>
+                  <a href="../mypage/my_page_password.php"
+                    >{=__('내정보수정')}</a
+                  >
+                </li>
+                <li>
+                  <a href="../mypage/wish_list.php">{=__('찜 리스트')}</a>
+                </li>
+                <li><a href="../mypage/mypage_qa.php">1:1 {=__('문의')}</a></li>
+              </ul>
+            </div>
+            <span class="txt_bar"></span>
+          </li>
+          <li>
+            <a href="../order/cart.php"
+              >{=__('장바구니')}( <strong>{=dataCartGoodsCnt()}</strong> )</a
+            ><span class="txt_bar"></span>
+          </li> -->
+          <!-- <li><a href="../service/index.php">{=__('고객센터')}</a></li> -->
+        </ul>
+      </div>
+      <div class="top_member_box2">
+        <a href="../order/cart.php"
+          ><img
+            src="../../img/headerimgs/btn_cart_header.png"
+            alt="{=__('장바구니')}"
+        /></a>
+        <a href="../mypage/index.php">
+          <img
+            style="height: 23px"
+            src="../../img/headerimgs/btn_mypage_header.png"
+            alt="{=__('마이페이지')}"
+          />
+        </a>
+      </div>
+    </div>
+    <!-- //header_top_cont -->
+  </div>
+  <!-- //header_top -->
+</div>
+<!-- //header -->

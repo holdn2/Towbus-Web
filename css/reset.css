@@ -1,0 +1,127 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* pretendard 추가 240906 */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+.godo * {
+  font-family: var(--font-family), Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, sans-serif;
+}
+/* pretendard 추가 240906 */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* reset */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+textarea,
+p,
+blockquote,
+th,
+td,
+input,
+select,
+textarea,
+button {
+  margin: 0;
+  padding: 0;
+}
+fieldset,
+img {
+  border: 0 none;
+  vertical-align: middle;
+}
+dl,
+ul,
+ol,
+li {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+input,
+select,
+textarea,
+button {
+  vertical-align: middle;
+}
+
+button {
+  border: 0 none;
+  background-color: transparent;
+  cursor: pointer;
+}
+body {
+  background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("https://s3-alpha-sig.figma.com/img/90f4/aea0/40b343fc5c123e56fe1fc701b7c4e04a?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=dRqm9m-tLnO4JpcCaS2ZSfUgOW6WqPFVuVH7VkwGCHr2FNXLjdQB6biNCMQtP5ltiG966cEqkv5MRI8roM31uaretQv3ozfHJidIQ~oCYskcx2rPpHrQhgVANa7kTKnlYqUlng-0hJY~bwQIXOCFU53qFDtpDiiG-rhMCzjBhHztjuYLMJ7LY-BWVA9P4C5lW8r~cFU7X5O6uyOX15DI3YRrhH6-j84~VYlrcBk~ekL8GLUW3LQq2Lg-dsm-80OIK9Z70OZ6LXhvMXDlI4W2s-hjyOSbjy6uTso2YOo2Uizpnf6KJ2Kl0MCP-UhhlRXdggXnPh~SQAsEvNJpmNqB9A__")
+      lightgray 50% / cover no-repeat;
+  background-attachment: fixed;
+}
+
+body,
+th,
+td,
+input,
+select,
+textarea,
+button {
+  font-size: var(--font-size);
+  line-height: 1.5;
+  font-family: var(--font-family), Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, Dotum, "돋움", sans-serif;
+  color: #333;
+} /* color값은 디자인가이드에 맞게사용 */
+a {
+  color: #333;
+  text-decoration: none;
+  font-weight: normal;
+}
+a:active,
+a:hover {
+  text-decoration: none;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+var {
+  font-style: normal;
+  font-weight: normal;
+}

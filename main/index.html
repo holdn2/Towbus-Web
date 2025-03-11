@@ -1,0 +1,80 @@
+{*** 쇼핑몰 메인본문 | main/index.php ***} { # header }
+
+<!-- 반응형 디자인을 위한 메타 태그 추가 -->
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
+
+<!-- 폰트어썸 아이콘 (메뉴 아이콘 등에 사용) -->
+<!-- <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/> -->
+
+<!-- <link
+  type="text/css"
+  rel="stylesheet"
+  href="{=setBrowserCache('../css/plugins/simply-scroll.css')}"
+/> -->
+<script
+  type="text/javascript"
+  src="{=setBrowserCache('../js/simplyScroll.js')}"
+  defer
+></script>
+
+{=includeWidget('proc/_populate.html', 'sno', '100')}
+<div class="main_visual">
+  {=includeWidget('proc/_slider_banner.html', 'bannerCode', '511517418')}
+</div>
+
+<!-- //main_visual -->
+<div class="main_content">
+  <div class="main_goods_cont">
+    <!-- 설문조사 배너 -->
+    {=pollViewBanner()}
+    <!-- 설문조사 배너 -->
+  </div>
+
+  <!-- //main_goods_cont -->
+</div>
+<!-- //main_content -->
+
+<!-- <script
+  type="text/javascript"
+  src="{=setBrowserCache('../js/responsive_nav.js')}"
+  defer
+></script> -->
+<script>
+  $(() => {
+    $(".js-scroll").simplyScroll();
+
+    // 이미지에 로딩 지연 속성 추가
+    $("img").attr("loading", "lazy");
+  });
+</script>
+<div class="main-category-button-container">
+  <span class="main-category-title">맑은 제주의 숨비를 전하다.</span>
+  <div class="category-button-wrapper">
+    <button class="main-category-button-special">
+      <span class="main-category-button-text-special">특별기획</span>
+    </button>
+    <button class="main-category-button">
+      <span class="main-category-button-text">고체세정라인</span>
+    </button>
+    <button class="main-category-button">
+      <span class="main-category-button-text">스킨케어라인</span>
+    </button>
+  </div>
+</div>
+<div
+  style="
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 160px;
+  "
+>
+  <img src="../img/towbusMap/towbusMap.png" alt="제주도 지도" />
+</div>
+{ # footer }

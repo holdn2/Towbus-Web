@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+#contents {
+	padding-block-end: 120px;
+}
+
+/* 찜하기, 장바구니 버튼 */
+.body-main .btn_list_get,
+.body-main .btn_list_cart {
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	margin: 0;
+}
+.body-main .btn_list_get img,
+.body-main .btn_list_cart img {
+	transform: translate(2px, -2px);
+}
+.body-main .btn_list_get span,
+.body-main .btn_list_cart span {
+	display: none;
+}
+.body-main .item_group_type .item_cont {
+	padding-inline: 0 12px;
+}
+
+
+/* 더보기 공통 */
+.btn_goods_more .btn_goods_view_more {
+	font-size: calc(var(--font-size) + 4px);
+}
+
+.main_goods_cont {
+	width: var(--min-width);
+	margin-inline: auto;
+}
+
+/* 메인 */
+.main_visual {
+	overflow: hidden;
+	width: 100%;
+	margin: 0;
+}
+
+/* rolling banner */
+.main-rolling {
+	margin: 0 0 120px;
+	block-size: 78px;
+	overflow: hidden;
+	background-color: var(--primary-default);
+}
+
+
+/* top banners */
+.main-top-banners {
+	margin-block-end: 120px;
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+/* green banner */
+.green-banner {
+	margin: 0 0 120px;
+	text-align: center;
+	background-color: var(--secondary-default);
+}
+.green-banner img {
+	width: 100%;
+	max-width: var(--max-width);
+}
+
+/* best product */
+.main-best-product {
+	margin-block-end: 120px;
+}
+
+.main-best-product .display-type06 {
+	padding-block-end: 0;
+}
+.main-best-product .display-type06 .goods_list_tit {
+	padding-block: 0 20px;
+}
+
+.main-best-product .display-type06 .item_info_cont {
+	padding-top: 16px;
+}
+
+.main-best-product .display-type06 .item_scroll_type::-webkit-scrollbar {
+	height: 2px;
+}
+
+.main-best-product .display-type06 .item_scroll_type::-webkit-scrollbar-thumb {
+	background-color: var(--primary-default);
+}
+.main-best-product .display-type06 .item_scroll_type::-webkit-scrollbar-track {
+	background-color: #d1d1d1;
+}
+
+.main-best-product .display-type06 .item_scroll_type ul {
+	padding-block-end: 80px;
+}
+
+/* 하단 배너 */
+.main-footer-banners {
+	display: flex;
+	gap: 30px;
+}
