@@ -55,14 +55,37 @@
          background:#cfcfcf;
      }
      <!--{ : }-->
+     /* 홈화면 슬라이드 dots 수정 */
      .slider-banner-{=bannerCode}  .slick-dots li button{
-         width:{=bannerPageButton['size']}px;
-         height:{=bannerPageButton['size']}px;
+         /* width:{=bannerPageButton['size']}px;
+         height:{=bannerPageButton['size']}px; */
+         width: 5px !important; /* 기존보다 더 작은 크기 */
+         height: 5px !important;
+         padding: 0 !important;
          border-radius:{=bannerPageButton['radius']}%;
-         background:{=bannerPageButton['inactiveColor']};
+         background:{=bannerPageButton['activeColor']};
+         opacity: 1 !important; /* 투명도 조정 */
      }
      .slider-banner-{=bannerCode} .slick-dots li.slick-active button{
          background:{=bannerPageButton['activeColor']};
+         opacity: 1 !important; /* 투명도 조정 */
+     }
+     /* 활성화된 점을 감싸는 원 */
+     .slider-banner-{=bannerCode} .slick-dots li.slick-active {
+         position: relative;
+     }
+
+     .slider-banner-{=bannerCode} .slick-dots li.slick-active::after {
+         content: "";
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         width: 15px; /* 원 크기 (점보다 커야 함) */
+         height: 15px;
+         border-radius: 50%;
+         border: 1px solid {=bannerPageButton['activeColor']};
+         transform: translate(-50%, -50%); /* 중앙 정렬 */
+
      }
      <!--{ / }-->
 </style>

@@ -206,7 +206,7 @@
 }
 .top_member_box > li a {
   display: inline-block;
-  color: #000;
+  color: #fff;
   font-size: 16px;
 }
 
@@ -439,6 +439,27 @@
 }
 .main-category-button-text-special {
   color: #fff;
+}
+.viewmore-button {
+  position: absolute;
+  /* 중앙 정렬 */
+  left: translateX(-50%);
+  bottom: 30%;
+  display: flex;
+  padding: 13px 30px;
+  height: 37px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 21px;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.3);
+}
+.viewmore-button-text {
+  color: #fff;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
 }
 /* 최근검색어 + 추천 상품이 있을 때 */
 .recom_box + .recent_box {
@@ -1752,7 +1773,8 @@ label.check-s.color-white {
 
 /* 풋터 */
 #footer {
-  max-width: var(--min-width);
+  /* max-width: var(--min-width); */
+  width: 100%;
   /* padding-block: 60px; */
   padding: 60px;
   margin-inline: auto;

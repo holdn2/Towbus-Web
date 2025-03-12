@@ -74,14 +74,34 @@
     </button>
   </div>
 </div>
-
+<!-- 상품 보이는 부분 -->
+<div class="main_goods_cont main-best-product">
+  <!-- 메인 상품 노출 -->{=includeWidget('goods/_goods_display_main.html',
+  'sno', '1')}<!-- 메인 상품 노출 -->
+</div>
 <!-- View more -->
-<div style="display: flex; justify-content: center; position: relative">
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 178px;
+  "
+>
   <img
-    src="../img/towbusImgs/viewmoreImg.png"
+    src="../img/towbusImgs/viewMoreImg.png"
     alt="View more"
-    style="width: 1280px; height: 400px"
+    style="width: 100%; z-index: 0"
   />
+  <a
+    href="http://towbus.kr/service/company.php"
+    style="z-index: 100"
+    class="viewmore-button"
+  >
+    <button>
+      <span class="viewmore-button-text">View more</span>
+    </button>
+  </a>
 </div>
 
 <!-- 제주도 지도 보이기 -->
