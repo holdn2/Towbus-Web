@@ -1,4 +1,5 @@
 {*** [위젯] 움직이는 배너 | proc/_slider_banner.php ***}
+<!-- 홈화면 배너 -->
 
 <!--{ ? bannerUseFl === 'y' }-->
 <style type="text/css">
@@ -36,6 +37,18 @@
          background:{bannerSideButton['activeColor']}\0/IE8;
      }
 
+     /* slick-dots 위치 조정 */
+     .slider-banner-{=bannerCode} .slick-dots {
+         position: absolute;
+         bottom: 45px !important; /* 기존보다 위로 올리기 */
+         left: 50%;
+         transform: translateX(-50%);
+     }
+
+     /* slick-dots 개별 점들의 정렬 유지 */
+     .slider-banner-{=bannerCode} .slick-dots li {
+          display: inline-block;
+     }
      <!--{ ? bannerPageButton['useFl'] == 'c' }-->
      .slider-banner-{=bannerCode} .slick-dots li{
          width:12.5%;
@@ -62,6 +75,8 @@
          width: 5px !important; /* 기존보다 더 작은 크기 */
          height: 5px !important;
          padding: 0 !important;
+         margin-right: 15px !important;
+         margin-left: 15px !important;
          border-radius:{=bannerPageButton['radius']}%;
          background:{=bannerPageButton['activeColor']};
          opacity: 1 !important; /* 투명도 조정 */
@@ -83,19 +98,43 @@
          width: 15px; /* 원 크기 (점보다 커야 함) */
          height: 15px;
          border-radius: 50%;
+         pointer-events: none;
          border: 1px solid {=bannerPageButton['activeColor']};
          transform: translate(-50%, -50%); /* 중앙 정렬 */
-
      }
+
+     /* 슬라이드 정지 버튼 추가 */
+     .total-slider-wrap{
+        position:relative;
+     }
+
+      .slider-controls button {
+         position: absolute;
+         bottom: 2%;
+         left: 49.6%;
+         cursor: pointer;
+      }
+
+
      <!--{ / }-->
 </style>
 
 <!-- 홈화면 슬라이드 배너 -->
-<div class="slider-wrap slider-banner-{=bannerCode}">
-  <!--{ @ bannerInfo }-->
-  <div>{=.value_}</div>
-  <!--{ / }-->
+<div class="total-slider-wrap">
+  <div class="slider-wrap slider-banner-{=bannerCode}">
+    <!--{ @ bannerInfo }-->
+    <div>{=.value_}</div>
+    <!--{ / }-->
+  </div>
+  <!-- 슬라이드 정지 및 재생 버튼 추가 -->
+  <div class="slider-controls">
+    <button id="pause-slider">
+      <img src="../img/towbusIcon/pauseButton.png" alt="정지" />
+    </button>
+    <button id="play-slider" style="display: none">재생</button>
+  </div>
 </div>
+
 <script
   src="../js/slider/slick/slick.js"
   type="text/javascript"
@@ -153,5 +192,36 @@
       <!--{ / }-->
       <!--{ / }-->
   });
+  /* 슬라이드 배너 정지 js */
+  $(document).ready(function(){
+    var $slider = $('.slider-banner-{=bannerCode}');
+
+    $slider.not('.slick-initialized').slick({
+        autoplay: true,
+        dots: true,
+        arrows: true,
+        infinite: true,
+        autoplaySpeed : {=bannerSliderTime},
+        speed: {=bannerSpeed},
+        slidesToShow: 1,
+        fade: true,
+        draggable: false
+    });
+
+    // 정지 버튼 클릭 시 슬라이드 정지
+    $('#pause-slider').click(function() {
+        $slider.slick('slickPause'); // 슬라이드 자동 전환 정지
+        $(this).hide();
+        $('#play-slider').show();
+    });
+
+    // 재생 버튼 클릭 시 슬라이드 다시 시작
+    $('#play-slider').click(function() {
+        $slider.slick('slickPlay'); // 슬라이드 자동 전환 재개
+        $(this).hide();
+        $('#pause-slider').show();
+    });
+  });
+  /* 여기까지 추가 함수 */
 </script>
 <!--{ / }-->
