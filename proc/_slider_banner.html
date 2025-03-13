@@ -38,17 +38,17 @@
      }
 
      /* slick-dots 위치 조정 */
-     .slider-banner-{=bannerCode} .slick-dots {
+     /* .slider-banner-{=bannerCode} .slick-dots {
          position: absolute;
-         bottom: 45px !important; /* 기존보다 위로 올리기 */
+         bottom: 45px !important;
          left: 50%;
          transform: translateX(-50%);
-     }
+     } */
 
      /* slick-dots 개별 점들의 정렬 유지 */
-     .slider-banner-{=bannerCode} .slick-dots li {
+     /* .slider-banner-{=bannerCode} .slick-dots li {
           display: inline-block;
-     }
+     } */
      <!--{ ? bannerPageButton['useFl'] == 'c' }-->
      .slider-banner-{=bannerCode} .slick-dots li{
          width:12.5%;
@@ -109,6 +109,7 @@
      }
 
       .slider-controls button {
+         display: none;
          position: absolute;
          bottom: 2%;
          left: 49.6%;
