@@ -3,136 +3,194 @@
 
 <!--{ ? bannerUseFl === 'y' }-->
 <style type="text/css">
-     <!--{ ? bannerSize['sizeType'] == '%' }-->
-      .slider-wrap .slick-slide {
-         overflow:hidden;
-     }
-     <!--{ / }-->
+      <!--{ ? bannerSize['sizeType'] == '%' }-->
+       .slider-wrap .slick-slide {
+          overflow:hidden;
+      }
+      <!--{ / }-->
 
-     .slider-banner-{=bannerCode}{
-     width:{=bannerSize['width']}{=bannerSize['sizeType']};
-     <!--{ ? bannerSize['sizeType'] != '%' }-->
-     height:{=bannerSize['height']}px;
-     <!--{ / }-->
-     }
-     .slider-banner-{=bannerCode} img{
-         <!--{ ? bannerSize['sizeType'] != '%' }-->
-         width:{=bannerSize['width']}{=bannerSize['sizeType']};
-         height:{=bannerSize['height']}px;
-         <!--{ : }-->
-  	max-width: 100{=bannerSize['sizeType']};
-         <!--{ / }-->
-     }
-
-  <!--{ ? bannerSize['sizeType'] == '%' }-->
-  .body-main #wrap .slider-banner-{=bannerCode} img{max-width:none;}
-  <!--{ / }-->
-
-     .slider-banner-{=bannerCode} .slick-prev{
-        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23{=str_replace('#', '', bannerSideButton['activeColor'])}'%2F%3E%3C%2Fsvg%3E");
-        background:{bannerSideButton['activeColor']}\0/IE8;
-     }
-     .slider-banner-{=bannerCode} .slick-next{
-         background-image:   url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23{=str_replace('#', '', bannerSideButton['activeColor'])}'%2F%3E%3C%2Fsvg%3E");
-         background:{bannerSideButton['activeColor']}\0/IE8;
-     }
-
-     /* slick-dots 위치 조정 */
-     /* .slider-banner-{=bannerCode} .slick-dots {
-         position: absolute;
-         bottom: 45px !important;
-         left: 50%;
-         transform: translateX(-50%);
-     } */
-
-     /* slick-dots 개별 점들의 정렬 유지 */
-     /* .slider-banner-{=bannerCode} .slick-dots li {
-          display: inline-block;
-     } */
-     <!--{ ? bannerPageButton['useFl'] == 'c' }-->
-     .slider-banner-{=bannerCode} .slick-dots li{
-         width:12.5%;
-         margin:0 4px !important;
-     }
-     .slider-banner-{=bannerCode} .slick-dots li button{
-         font-size:12px;
-         width:100%;
-         height:30px;
-         text-align:center;
-         background:#000000;
-         border-radius:0;
-         color:#fff;
-         opacity:1;
-     }
-     .slider-banner-{=bannerCode} .slick-dots li.slick-active button{
-         background:#cfcfcf;
-     }
-     <!--{ : }-->
-     /* 홈화면 슬라이드 dots 수정 */
-     .slider-banner-{=bannerCode}  .slick-dots li button{
-         /* width:{=bannerPageButton['size']}px;
-         height:{=bannerPageButton['size']}px; */
-         width: 5px !important; /* 기존보다 더 작은 크기 */
-         height: 5px !important;
-         padding: 0 !important;
-         margin-right: 15px !important;
-         margin-left: 15px !important;
-         border-radius:{=bannerPageButton['radius']}%;
-         background:{=bannerPageButton['activeColor']};
-         opacity: 1 !important; /* 투명도 조정 */
-     }
-     .slider-banner-{=bannerCode} .slick-dots li.slick-active button{
-         background:{=bannerPageButton['activeColor']};
-         opacity: 1 !important; /* 투명도 조정 */
-     }
-     /* 활성화된 점을 감싸는 원 */
-     .slider-banner-{=bannerCode} .slick-dots li.slick-active {
-         position: relative;
-     }
-
-     .slider-banner-{=bannerCode} .slick-dots li.slick-active::after {
-         content: "";
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         width: 15px; /* 원 크기 (점보다 커야 함) */
-         height: 15px;
-         border-radius: 50%;
-         pointer-events: none;
-         border: 1px solid {=bannerPageButton['activeColor']};
-         transform: translate(-50%, -50%); /* 중앙 정렬 */
-     }
-
-     /* 슬라이드 정지 버튼 추가 */
-     .total-slider-wrap{
-        position:relative;
-     }
-
-      .slider-controls button {
-         display: none;
-         position: absolute;
-         bottom: 2%;
-         left: 49.6%;
-         cursor: pointer;
+      .slider-banner-{=bannerCode}{
+      width:{=bannerSize['width']}{=bannerSize['sizeType']};
+      <!--{ ? bannerSize['sizeType'] != '%' }-->
+      height:{=bannerSize['height']}px;
+      <!--{ / }-->
+      }
+      .slider-banner-{=bannerCode} img{
+          <!--{ ? bannerSize['sizeType'] != '%' }-->
+          width:{=bannerSize['width']}{=bannerSize['sizeType']};
+          height:{=bannerSize['height']}px;
+          <!--{ : }-->
+   	max-width: 100{=bannerSize['sizeType']};
+          <!--{ / }-->
       }
 
+   <!--{ ? bannerSize['sizeType'] == '%' }-->
+   .body-main #wrap .slider-banner-{=bannerCode} img{max-width:none;}
+   <!--{ / }-->
 
-     <!--{ / }-->
+      .slider-banner-{=bannerCode} .slick-prev{
+         background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23{=str_replace('#', '', bannerSideButton['activeColor'])}'%2F%3E%3C%2Fsvg%3E");
+         background:{bannerSideButton['activeColor']}\0/IE8;
+      }
+      .slider-banner-{=bannerCode} .slick-next{
+          background-image:   url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23{=str_replace('#', '', bannerSideButton['activeColor'])}'%2F%3E%3C%2Fsvg%3E");
+          background:{bannerSideButton['activeColor']}\0/IE8;
+      }
+
+      /* slick-dots 위치 조정 */
+      /* .slider-banner-{=bannerCode} .slick-dots {
+          position: absolute;
+          bottom: 45px !important;
+          left: 50%;
+          transform: translateX(-50%);
+      } */
+
+      /* slick-dots 개별 점들의 정렬 유지 */
+      /* .slider-banner-{=bannerCode} .slick-dots li {
+           display: inline-block;
+      } */
+      <!--{ ? bannerPageButton['useFl'] == 'c' }-->
+      .slider-banner-{=bannerCode} .slick-dots li{
+          width:12.5%;
+          margin:0 4px !important;
+      }
+      .slider-banner-{=bannerCode} .slick-dots li button{
+          font-size:12px;
+          width:100%;
+          height:30px;
+          text-align:center;
+          background:#000000;
+          border-radius:0;
+          color:#fff;
+          opacity:1;
+      }
+      .slider-banner-{=bannerCode} .slick-dots li.slick-active button{
+          background:#cfcfcf;
+      }
+      <!--{ : }-->
+      /* 홈화면 슬라이드 dots 수정 */
+      .slider-banner-{=bannerCode}  .slick-dots li button{
+          /* width:{=bannerPageButton['size']}px;
+          height:{=bannerPageButton['size']}px; */
+          width: 5px !important; /* 기존보다 더 작은 크기 */
+          height: 5px !important;
+          padding: 0 !important;
+          margin-right: 15px !important;
+          margin-left: 15px !important;
+          border-radius:{=bannerPageButton['radius']}%;
+          background:{=bannerPageButton['activeColor']};
+          opacity: 1 !important; /* 투명도 조정 */
+      }
+      .slider-banner-{=bannerCode} .slick-dots li.slick-active button{
+          background:{=bannerPageButton['activeColor']};
+          opacity: 1 !important; /* 투명도 조정 */
+      }
+      /* 활성화된 점을 감싸는 원 */
+      .slider-banner-{=bannerCode} .slick-dots li.slick-active {
+          position: relative;
+      }
+
+      .slider-banner-{=bannerCode} .slick-dots li.slick-active::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 14px; /* 원 크기 (점보다 커야 함) */
+          height: 14px;
+          border-radius: 50%;
+          pointer-events: none;
+          transform: translate(-50%, -50%); /* 중앙 정렬 */
+          border: 1px solid {=bannerPageButton['activeColor']};
+      }
+
+      /* 슬라이드 정지 버튼 추가 */
+      .total-slider-wrap{
+         position:relative;
+      }
+
+       .slider-controls button {
+          display: none;
+          position: absolute;
+          bottom: 2%;
+          left: 49.6%;
+          cursor: pointer;
+       }
+  /* 새로 추가: 버튼 스타일 */
+  .banner-link-button {
+          position: absolute;
+          bottom: 40px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px 30px;
+          background-color: rgba(255, 255, 255, 0.8);
+          color: #333;
+          border: 1px solid #333;
+          border-radius: 30px;
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+          z-index: 10;
+          transition: all 0.3s ease;
+      }
+
+      .banner-link-button:hover {
+          background-color: #333;
+          color: #fff;
+      }
+
+      /* 이미지 링크 비활성화 */
+      .slider-wrap .slick-slide a {
+          pointer-events: none;
+      }
+
+      /* 슬라이드 위치 상대값으로 설정 */
+      .slider-wrap .slick-slide {
+          position: relative;
+      }
+      .slider-banner-wrapper{
+        position: relative;
+      }
+      .slider-banner-navigate-button{
+        position: absolute;
+        bottom: 25%;
+        right: 25%;
+        z-index: 100;
+        height: 42px;
+        padding: 0 25px;
+        color:#fff;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 23px;
+        border-radius: 21px;
+        border: 1px solid #FFF;
+        background: rgba(255, 255, 255, 0.20);
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        align-items: center;
+      }
+
+      <!--{ / }-->
 </style>
 
 <!-- 홈화면 슬라이드 배너 -->
 <div class="total-slider-wrap">
   <div class="slider-wrap slider-banner-{=bannerCode}">
     <!--{ @ bannerInfo }-->
-    <div>{=.value_}</div>
+    <div class="slider-banner-wrapper">
+      {=.value_}
+      <div>
+        <button class="slider-banner-navigate-button">
+          자세히 보기
+          <img
+            class="img-style"
+            src="../img/towbusIcon/arrowRight.png"
+            alt="오른쪽 화살표"
+          />
+        </button>
+      </div>
+    </div>
     <!--{ / }-->
-  </div>
-  <!-- 슬라이드 정지 및 재생 버튼 추가 -->
-  <div class="slider-controls">
-    <button id="pause-slider">
-      <img src="../img/towbusIcon/pauseButton.png" alt="정지" />
-    </button>
-    <button id="play-slider" style="display: none">재생</button>
   </div>
 </div>
 
@@ -171,6 +229,37 @@
           <!--{ / }-->
           draggable : false
       });
+      // 새로 추가: 배너 링크 버튼 처리
+      $('.slider-banner-navigate-button').on('click', function(e) {
+          e.preventDefault();
+
+          // 현재 슬라이드의 링크 URL 찾기
+          var currentSlide = $(this).closest('.slider-banner-wrapper');
+          var linkElement = currentSlide.find('a').first();
+
+          if (linkElement.length) {
+              // 링크 URL 추출
+              var linkUrl = linkElement.attr('href');
+
+              // 새 창으로 열기 여부 확인 (target="_blank" 속성이 있는지)
+              var isNewWindow = linkElement.attr('target') === '_blank';
+
+              // 링크 이동
+              if (isNewWindow) {
+                  window.open(linkUrl, '_blank');
+              } else {
+                  window.location.href = linkUrl;
+              }
+          }
+      });
+
+      // 링크가 없는 배너의 '자세히 보기' 버튼 숨기기
+      $('.slider-banner-wrapper').each(function() {
+          var linkElement = $(this).find('a').first();
+          if (!linkElement.length) {
+              $(this).find('.slider-banner-navigate-button').hide();
+          }
+      });
       <!--{ ? bannerPageButton['useFl'] == 'c' }-->
       var slickIndex = $('.slider-banner-{=bannerCode}').slick('getSlick').instanceUid;
       var navWidth, navHeight, defaultNavCSS, defaultNavBtnCSS, activeNavCSS, activeNavBtnCSS;
@@ -193,36 +282,5 @@
       <!--{ / }-->
       <!--{ / }-->
   });
-  /* 슬라이드 배너 정지 js */
-  $(document).ready(function(){
-    var $slider = $('.slider-banner-{=bannerCode}');
-
-    $slider.not('.slick-initialized').slick({
-        autoplay: true,
-        dots: true,
-        arrows: true,
-        infinite: true,
-        autoplaySpeed : {=bannerSliderTime},
-        speed: {=bannerSpeed},
-        slidesToShow: 1,
-        fade: true,
-        draggable: false
-    });
-
-    // 정지 버튼 클릭 시 슬라이드 정지
-    $('#pause-slider').click(function() {
-        $slider.slick('slickPause'); // 슬라이드 자동 전환 정지
-        $(this).hide();
-        $('#play-slider').show();
-    });
-
-    // 재생 버튼 클릭 시 슬라이드 다시 시작
-    $('#play-slider').click(function() {
-        $slider.slick('slickPlay'); // 슬라이드 자동 전환 재개
-        $(this).hide();
-        $('#pause-slider').show();
-    });
-  });
-  /* 여기까지 추가 함수 */
 </script>
 <!--{ / }-->

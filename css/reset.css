@@ -101,7 +101,7 @@ select,
 textarea,
 button {
   font-size: var(--font-size);
-  line-height: 1.5;
+  /* line-height: 1.5; */
   font-family: var(--font-family), Pretendard, -apple-system, BlinkMacSystemFont,
     system-ui, Roboto, Dotum, "돋움", sans-serif;
   color: #333;
