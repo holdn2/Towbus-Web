@@ -42,11 +42,11 @@
         <div
           style="height: 10px; width: 0.8px; background-color: #5882a8"
         ></div>
-        <span>토버스</span>
+        <span>{=gMall.companyNm}</span>
       </div>
       <div class="towbus-brandinfo-wrapper">
-        <span style="height: 8px">CEO : 박지현</span>
-        <span style="height: 8px">주소 : 00시 00구 00로 1길 22, 00호</span>
+        <span style="height: 8px">CEO : {=gMall.ceoNm}</span>
+        <span style="height: 8px">주소 : {=gMall.address}</span>
       </div>
       <div class="towbus-sns-wrapper">
         <span style="height: 10px">SNS</span>
@@ -63,15 +63,19 @@
         </div>
       </div>
     </div>
-    <!-- <div style="height: 122px; width: 1px; background-color: #5882a8"></div> -->
     <div class="towbus-footer-mid-wrapper">
       <div class="towbus-mid-list-wrapper">
-        <div style="margin-bottom: 14px">
-          <span class="towbus-footer-bold">About</span>
+        <div style="display: flex; margin-bottom: 14px; gap: 5px">
+          <a
+            class="towbus-footer-bold-about"
+            href="http://towbus.kr/service/company.php"
+          >
+            About
+          </a>
           <img
+            style="padding-top: 1px"
             src="../../img/towbuslogo/towbuslogo.png"
             alt="토버스 로고"
-            style="margin-left: 1px"
           />
         </div>
         <div
@@ -224,11 +228,11 @@
         >대량 주문 문의처</span
       >
       <span class="towbus-footer-normal" style="margin-bottom: 25px"
-        >towbus2021@naver.com</span
+        >{=gMall.email}</span
       >
       <span class="towbus-footer-bold">Customer Center</span>
       <span class="towbus-footer-normal" style="margin-bottom: 10px"
-        >02)000-0000</span
+        >{=gMall.phone}</span
       >
       <span class="towbus-footer-normal">Mon - Fri / 10:00 ~ 17:00</span>
     </div>
