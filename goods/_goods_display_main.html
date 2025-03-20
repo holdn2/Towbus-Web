@@ -81,6 +81,175 @@
   <!--{ / }-->
 </div>
 
+<style>
+  /* 상품 표시 영역 스타일 */
+  .goods_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center; /* 가운데 정렬 */
+    width: 100%;
+  }
+
+  .goods_list_cont {
+    position: relative;
+    overflow: hidden;
+    width: 500px !important;
+    margin: 0 auto; /* 가운데 정렬을 위해 마진 추가 */
+  }
+
+  /* 상품 슬라이더 컨트롤 - 오른쪽으로 배치 */
+  .goods-slider-controls {
+    position: absolute;
+    top: 20px; /* 상단에서 20px 위치 */
+    right: 10px; /* 오른쪽에 배치 */
+    width: auto; /* 너비 자동 조정 */
+    z-index: 100;
+    display: flex;
+    flex-direction: row; /* 세로로 배치 */
+    gap: 10px; /* 버튼 사이 간격 */
+  }
+
+  .goods-slider-arrow {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .goods-slider-arrow:hover {
+    background: #fff;
+  }
+
+  .goods-slider-arrow.prev {
+    margin-left: 0;
+  }
+
+  .goods-slider-arrow.next {
+    margin-right: 0;
+  }
+
+  .item_scroll_type {
+    border: 1px solid #5882a8;
+  }
+
+  /* 슬라이더 상품 스타일 - 상품당 하나만 표시되도록 */
+  .item_photo_box {
+    text-align: center;
+    margin-bottom: 15px; /* 이미지와 텍스트 사이 간격 */
+  }
+
+  .item_photo_box img {
+    max-height: 300px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  /* 상품 정보 스타일 */
+  .item_info_cont {
+    text-align: center; /* 상품 정보 중앙 정렬 */
+    padding: 0 10px; /* 좌우 패딩 추가 */
+  }
+
+  /* 상품명 스타일 */
+  .item_info_cont .item_tit_box .item_name {
+    font-size: 16px; /* 상품명 폰트 크기 */
+    font-weight: 500; /* 상품명 폰트 굵기 */
+    color: #333; /* 상품명 색상 */
+    margin-bottom: 10px; /* 하단 마진 */
+    line-height: 1.4; /* 줄 간격 */
+  }
+
+  /* 상품 설명 스타일 */
+  .item_info_cont .item_comment {
+    font-size: 14px; /* 설명 폰트 크기 */
+    color: #666; /* 설명 색상 */
+    margin-bottom: 8px; /* 하단 마진 */
+    line-height: 1.4; /* 줄 간격 */
+  }
+
+  /* 가격 스타일 */
+  .item_info_cont .item_money_box {
+    margin-top: 10px; /* 상단 마진 */
+  }
+
+  .item_info_cont .item_money_box .item_price {
+    font-size: 18px; /* 가격 폰트 크기 */
+    font-weight: bold; /* 굵게 */
+    color: #000; /* 가격 색상 */
+  }
+
+  .item_info_cont .item_money_box .item_price .item_price_sale {
+    color: #f44; /* 할인가 색상 */
+  }
+
+  /* 할인율 스타일 */
+  .item_info_cont .item_money_box .item_price_rate {
+    display: inline-block;
+    padding: 3px 6px;
+    font-size: 14px;
+    color: white;
+    background: #f44;
+    border-radius: 4px;
+    margin-left: 5px;
+  }
+
+  /* 반응형 스타일 */
+  @media screen and (max-width: 768px) {
+    .goods_list_cont {
+      width: 90% !important; /* 모바일에서 너비 조정 */
+    }
+
+    .goods-slider-arrow {
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+    }
+
+    .item_info_cont .item_tit_box .item_name {
+      font-size: 14px;
+    }
+
+    .item_info_cont .item_money_box .item_price {
+      font-size: 16px;
+    }
+  }
+
+  /* 상품 중앙 정렬을 위한 스타일 */
+  .goods_list_cont ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100% !important;
+    align-self: center;
+  }
+
+  .goods_list_cont ul li {
+    display: none; /* 모든 상품을 기본적으로 숨김 */
+  }
+
+  .goods_list_cont ul li.active {
+    display: block; /* 현재 활성화된 상품만 표시 */
+    margin: 0 auto; /* 가운데 정렬 */
+    float: none !important; /* 기존 float 제거 */
+    width: auto !important; /* 기존 너비 제한 제거 */
+    max-width: 80%; /* 최대 너비 제한 */
+  }
+
+  /* 기존 레이아웃 스타일 재정의 */
+  .goods_list_cont .item_gallery_type > ul > li {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+</style>
+
 <script type="text/javascript">
   <!--
   var keyValue{mainData.sno} = '{gGlobal.locale}' + '{mainData.sno}';
@@ -100,6 +269,9 @@
       $('.main_wrap_{mainData.sno}{mainData.groupSno} .btn_goods_view_down_more').on('click', function(e){
           gd_get_list_{mainData.sno}{mainData.groupSno}($(this).data('page'));
       });
+
+      // 슬라이더 기능 추가
+      initProductSlider();
   });
 
   function gd_get_list_{mainData.sno}{mainData.groupSno}(page) {
@@ -112,7 +284,72 @@
               saveSession(key{mainData.sno}.page, parseInt(page)+1);
               $('.main_wrap_{mainData.sno}{mainData.groupSno} .btn_goods_view_down_more').data('page', parseInt(page) + 1);
           }
+
+          // 데이터 로드 후 슬라이더 초기화
+          initProductSlider();
       });
+  }
+
+  // 상품 슬라이더 초기화 함수
+  function initProductSlider() {
+      // 약간의 지연 추가 (DOM이 완전히 로드된 후 실행)
+      setTimeout(function() {
+          // 상품 아이템 선택 (li 태그 선택)
+          var $items = $('.goods_content_{mainData.sno}{mainData.groupSno} ul > li');
+
+          if ($items.length <= 1) return; // 상품이 1개 이하면 슬라이더 적용 안함
+
+          // 모든 상품에서 active 클래스 제거
+          $items.removeClass('active');
+
+          // 첫번째 상품에만 active 클래스 추가
+          $items.first().addClass('active');
+
+          // 이미 슬라이더 컨트롤이 있으면 제거
+          $('.goods-slider-controls').remove();
+
+          // 슬라이더 컨트롤 추가
+          var controlsHtml = '<div class="goods-slider-controls">' +
+                            '<div class="goods-slider-arrow prev">◀</div>' +
+                            '<div class="goods-slider-arrow next">▶</div>' +
+                            '</div>';
+          $('.goods_content_{mainData.sno}{mainData.groupSno}').append(controlsHtml);
+
+          // 현재 슬라이드 인덱스
+          var currentIndex = 0;
+
+          // 이전 버튼 클릭 이벤트
+          $('.goods-slider-arrow.prev').on('click', function() {
+              if (currentIndex > 0) {
+                  currentIndex--;
+                  updateSlide();
+              }
+          });
+
+          // 다음 버튼 클릭 이벤트
+          $('.goods-slider-arrow.next').on('click', function() {
+              if (currentIndex < $items.length - 1) {
+                  currentIndex++;
+                  updateSlide();
+              }
+          });
+
+          // 슬라이드 업데이트 함수
+          function updateSlide() {
+              // 모든 상품에서 active 클래스 제거
+              $items.removeClass('active');
+
+              // 현재 인덱스의 상품에만 active 클래스 추가
+              $items.eq(currentIndex).addClass('active');
+
+              // 버튼 상태 업데이트 (첫/마지막 슬라이드에서 비활성화)
+              $('.goods-slider-arrow.prev').css('opacity', currentIndex === 0 ? 0.5 : 1);
+              $('.goods-slider-arrow.next').css('opacity', currentIndex === $items.length - 1 ? 0.5 : 1);
+          }
+
+          // 초기 버튼 상태 설정
+          updateSlide();
+      }, 500);
   }
   //-->
 </script>
