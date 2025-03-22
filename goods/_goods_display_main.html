@@ -83,75 +83,56 @@
 
 <style>
   /* 상품 표시 영역 스타일 */
+  .main_goods_cnt {
+    display: flex;
+  }
   .goods_list {
     display: flex;
     flex-direction: column;
     align-items: center; /* 가운데 정렬 */
     justify-content: center; /* 가운데 정렬 */
-    width: 100%;
   }
 
   .goods_list_cont {
+    display: flex;
+    /* width: 1160px; */
+    width: auto;
     position: relative;
     overflow: hidden;
-    width: 500px !important;
-    margin: 0 auto; /* 가운데 정렬을 위해 마진 추가 */
+    margin: 0 !important; /* 가운데 정렬을 위해 마진 추가 */
+    /* border: 1px solid #5882a8; */
+    padding: 0 !important;
   }
 
-  /* 상품 슬라이더 컨트롤 - 오른쪽으로 배치 */
-  .goods-slider-controls {
-    position: absolute;
-    top: 20px; /* 상단에서 20px 위치 */
-    right: 10px; /* 오른쪽에 배치 */
-    width: auto; /* 너비 자동 조정 */
-    z-index: 100;
-    display: flex;
-    flex-direction: row; /* 세로로 배치 */
-    gap: 10px; /* 버튼 사이 간격 */
+  .item_cont {
+    margin: 0;
+    padding: 0;
   }
-
-  .goods-slider-arrow {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .goods-slider-arrow:hover {
-    background: #fff;
-  }
-
-  .goods-slider-arrow.prev {
-    margin-left: 0;
-  }
-
-  .goods-slider-arrow.next {
-    margin-right: 0;
-  }
-
   .item_scroll_type {
-    border: 1px solid #5882a8;
+    /* 슬라이더용 스타일 제거 */
+    overflow-x: unset; /* 가로 스크롤 제거 */
+    overflow: visible; /* 전체 오버플로우 허용 */
+    white-space: normal; /* 줄바꿈 허용 */
+    scroll-behavior: auto; /* 부드러운 스크롤 제거 */
   }
   .item_scroll_type > ul {
+    display: flex;
+    width: 1160px !important;
+    height: 630px;
     padding-block-end: 0 !important;
+    justify-content: flex-start;
+    align-items: start;
+  }
+
+  .item_scroll_type > li {
+    margin: 0 !important;
   }
 
   /* 슬라이더 상품 스타일 - 상품당 하나만 표시되도록 */
-  .item_photo_box {
-    text-align: center;
-    margin-bottom: 15px; /* 이미지와 텍스트 사이 간격 */
-  }
 
   .item_photo_box img {
-    max-height: 300px;
-    width: auto;
+    width: 713px;
+    height: 630px;
     margin: 0 auto;
   }
 
@@ -205,34 +186,11 @@
     margin-left: 5px;
   }
 
-  /* 반응형 스타일 */
-  @media screen and (max-width: 768px) {
-    .goods_list_cont {
-      width: 90% !important; /* 모바일에서 너비 조정 */
-    }
-
-    .goods-slider-arrow {
-      width: 30px;
-      height: 30px;
-      font-size: 16px;
-    }
-
-    .item_info_cont .item_tit_box .item_name {
-      font-size: 14px;
-    }
-
-    .item_info_cont .item_money_box .item_price {
-      font-size: 16px;
-    }
-  }
-
   /* 상품 중앙 정렬을 위한 스타일 */
   .goods_list_cont ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     width: 100% !important;
-    align-self: center;
   }
 
   .goods_list_cont ul li {
@@ -243,22 +201,155 @@
     display: block; /* 현재 활성화된 상품만 표시 */
     margin: 0 auto; /* 가운데 정렬 */
     float: none !important; /* 기존 float 제거 */
-    width: auto !important; /* 기존 너비 제한 제거 */
-    max-width: 80%; /* 최대 너비 제한 */
+    width: 713px !important; /* 기존 너비 제한 제거 */
   }
 
-  /* 기존 레이아웃 스타일 재정의 */
-  .goods_list_cont .item_gallery_type > ul > li {
-    width: 100% !important;
-    margin: 0 !important;
+  /* 상품 이미지 오른쪽 설명 및 버튼 관련 */
+  .goods-product-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--towbus-blue-500, #5882a8);
+  }
+
+  .goods-desc-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 446px;
+    padding: 25px 30px 42px 30px;
+  }
+  .goods-desc-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 13px;
+  }
+  .goods-desc-logo {
+    width: 100px;
+    height: 27px;
+  }
+  /* 상품 슬라이더 컨트롤 - 오른쪽으로 배치 */
+  .goods-slider-controls {
+    width: auto; /* 너비 자동 조정 */
+    z-index: 100;
+    display: flex;
+    flex-direction: row; /* 세로로 배치 */
+    gap: 10px; /* 버튼 사이 간격 */
+  }
+  .goods-slider-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .goods-slider-arrow {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .goods-slider-arrow:hover {
+    background: #fff;
+  }
+
+  .goods-slider-arrow.prev {
+    margin-left: 0;
+  }
+
+  .goods-slider-arrow.next {
+    margin-right: 0;
   }
 
   /* 슬라이드 번호 표시 스타일 추가 */
   .slide-number {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
     text-align: center;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+    color: #9bb2d0;
+  }
+  .goods-slide-current {
+    color: #5882a8;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .goods-desc-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #5882a8;
+  }
+
+  /* 채팅 부분 */
+  .goods-desc-chatarea {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 42px;
+  }
+  .goods-chatLeft {
+    display: flex;
+    padding: 8px 30px;
+    border-radius: 21px;
+    border: 1px solid #5882a8;
+  }
+  .goods-chatLeft-text {
+    color: #5882a8;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 23px;
+    text-align: end;
+  }
+
+  .goods-chatRight {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 21px;
+    border: 1px solid #5882a8;
+    background: #5882a8;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .goods-chatRight-text {
+    display: inline;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 23px;
+    text-align: end;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .goods-chatRight-bold {
+    font-weight: 700;
+  }
+
+  /* 상품 보러가기 버튼 */
+  .goods-go-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid var(--towbus-blue-500, #5882a8);
+    padding: 13px 25px;
+    height: 75px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #5882a8;
   }
 </style>
 
@@ -332,12 +423,79 @@
           }
           // 슬라이더 컨트롤 추가
           var controlsHtml = '<div class="goods-slider-controls">' +
+                            '<div class="goods-slider-button-wrapper">'+
                             '<div class="goods-slider-arrow prev">◀</div>' +
+                            '<div class="slide-number">' +'<span class="goods-slide-current">'+(currentIndex+1)+'</span>'+'<span>'+"/"+'</span>'+ '<span>'+$items.length+'</span>' + '</div>'+
                             '<div class="goods-slider-arrow next">▶</div>'  +
-                            '<div class="slide-number">' +(currentIndex+1)+" / "+ $items.length + '</div>'+
+                            '</div>'+
                             '</div>';
+          var chatAreaShampoo = '<div class="goods-desc-chatarea">'+
+                              '<div class="goods-chatLeft">'+
+                                '<span class="goods-chatLeft-text">'+
+                                "요즘 두피가 너무 간지럽고 건조해"+
+                                '</span>'+
+                              '</div>'+
+                              '<div class="goods-chatLeft">'+
+                                '<span class="goods-chatLeft-text">'+
+                                "자연성분의 좋은 제품 없을까?"+
+                                '</span>'+
+                              '</div>'+
+                              '<div style="width:1px; height:12px"/>'+
+                              '<div class="goods-chatRight">'+
+                                '<span class="goods-chatRight-text">'+
+                                "토버스의"+
+                                '</span>'+
+                              '</div>'+
+                              '<div class="goods-chatRight">'+
+                                '<span class="goods-chatRight-text">'+
+                                '<span class="goods-chatRight-bold">'+
+                                  "고보습, 약산성 조약돌 샴푸바"+
+                                '</span>'+
+                                "는 어때?"+
+                                '</span>'+
+                              '</div>'+
+                              '<div class="goods-chatRight">'+
+                                '<span class="goods-chatRight-text">'+
+                                "자연성분이라 어쩌고저쩌고 히얄로어쩌고"+
+                                '<br/>'+
+                                "무슨무슨 성분때문에 두피에 아주좋아"+
+                                '</span>'+
+                              '</div>'+
+                              '<div class="goods-chatRight">'+
+                                '<span class="goods-chatRight-text">'+
+                                "지금 "+
+                                '<span class="goods-chatRight-bold">'+
+                                "2025 리뉴얼 프로모션"+
+                                '</span>'+
+                                "으로"+
+                                '<br/>'+
+                                "20% 세일도 하더라구~ 한번 둘러봐!"+
+                                '</span>'+
+                              '</div>'+
+                              '</div>'
 
-          $('.goods_content_{mainData.sno}{mainData.groupSno}').append(controlsHtml);
+
+          // 메인페이지 제품별 설명
+          var descProduct = '<div class="goods-desc-wrapper">'+
+                          '<div class="goods-desc-header">'+
+                            '<img class="goods-desc-logo" src="../img/towbuslogo/towbuslogo.png" alt="logo"/>'+
+                            (true&&controlsHtml)+
+                          '</div>'+
+                          '<h1 class="goods-desc-title">' + "조약돌 샴푸바" + '</h1>' +
+                           chatAreaShampoo+
+                          '</div>';
+
+          var goToProductBtn = '<button class="goods-go-btn">'+
+                              "샴푸바 보러가기"+
+                              '</button>'
+
+          var mainPageProductWrapper = '<div class="goods-product-wrapper">'+
+                                       descProduct +
+                                       goToProductBtn +
+                                       '</div>'+
+                                      '</div>'
+
+          $('.goods_content_{mainData.sno}{mainData.groupSno}').append(mainPageProductWrapper);
 
 
 
