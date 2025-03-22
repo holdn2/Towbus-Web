@@ -191,6 +191,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100% !important;
+    border: 1px solid #5882a8;
   }
 
   .goods_list_cont ul li {
@@ -302,11 +303,12 @@
   }
   .goods-chatLeft {
     display: flex;
-    padding: 8px 30px;
-    border-radius: 21px;
-    border: 1px solid #5882a8;
+    justify-content: flex-start;
   }
   .goods-chatLeft-text {
+    padding: 6px 30px;
+    border-radius: 21px;
+    border: 1px solid #5882a8;
     color: #5882a8;
     font-size: 16px;
     font-weight: 400;
@@ -316,24 +318,20 @@
   }
 
   .goods-chatRight {
-    display: inline-block;
-    padding: 10px 30px;
-    border-radius: 21px;
-    border: 1px solid #5882a8;
-    background: #5882a8;
-    white-space: pre-wrap;
-    word-break: break-word;
+    display: flex;
+    justify-content: flex-end;
   }
   .goods-chatRight-text {
-    display: inline;
+    padding: 6px 30px;
+    background: #5882a8;
+    border-radius: 21px;
+    border: 1px solid #5882a8;
     color: #fff;
     font-size: 16px;
     font-weight: 400;
     text-align: center;
     line-height: 23px;
     text-align: end;
-    white-space: pre-wrap;
-    word-break: break-word;
   }
   .goods-chatRight-bold {
     font-weight: 700;
@@ -440,7 +438,7 @@
                                 "자연성분의 좋은 제품 없을까?"+
                                 '</span>'+
                               '</div>'+
-                              '<div style="width:1px; height:12px"/>'+
+                              '<div style="width:1px; height:4px"/>'+
                               '<div class="goods-chatRight">'+
                                 '<span class="goods-chatRight-text">'+
                                 "토버스의"+
