@@ -139,6 +139,9 @@
   .item_scroll_type {
     border: 1px solid #5882a8;
   }
+  .item_scroll_type > ul {
+    padding-block-end: 0 !important;
+  }
 
   /* 슬라이더 상품 스타일 - 상품당 하나만 표시되도록 */
   .item_photo_box {
@@ -154,6 +157,7 @@
 
   /* 상품 정보 스타일 */
   .item_info_cont {
+    display: none !important;
     text-align: center; /* 상품 정보 중앙 정렬 */
     padding: 0 10px; /* 좌우 패딩 추가 */
   }
@@ -248,6 +252,14 @@
     width: 100% !important;
     margin: 0 !important;
   }
+
+  /* 슬라이드 번호 표시 스타일 추가 */
+  .slide-number {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
 </style>
 
 <script type="text/javascript">
@@ -292,31 +304,42 @@
 
   // 상품 슬라이더 초기화 함수
   function initProductSlider() {
-      // 약간의 지연 추가 (DOM이 완전히 로드된 후 실행)
       setTimeout(function() {
-          // 상품 아이템 선택 (li 태그 선택)
           var $items = $('.goods_content_{mainData.sno}{mainData.groupSno} ul > li');
 
-          if ($items.length <= 1) return; // 상품이 1개 이하면 슬라이더 적용 안함
+          if ($items.length <= 1) return;
 
-          // 모든 상품에서 active 클래스 제거
+          // 기존 내용 유지
           $items.removeClass('active');
-
-          // 첫번째 상품에만 active 클래스 추가
           $items.first().addClass('active');
 
-          // 이미 슬라이더 컨트롤이 있으면 제거
-          $('.goods-slider-controls').remove();
+          // 슬라이더 컨트롤이 있으면 제거
+          $('.goods-slider-controls, .slide-number').remove();
+          // 현재 슬라이드 인덱스
+          var currentIndex = 0;
 
+          // 슬라이드 업데이트 함수 수정
+          function updateSlide() {
+              $items.removeClass('active');
+              $items.eq(currentIndex).addClass('active');
+
+              // 슬라이드 번호 업데이트
+              $('.slide-number').text((currentIndex+1 ) + ' / ' + $items.length);
+
+              // 버튼 상태 업데이트
+              $('.goods-slider-arrow.prev').css('opacity', currentIndex === 0 ? 0.5 : 1);
+              $('.goods-slider-arrow.next').css('opacity', currentIndex === $items.length - 1 ? 0.5 : 1);
+          }
           // 슬라이더 컨트롤 추가
           var controlsHtml = '<div class="goods-slider-controls">' +
                             '<div class="goods-slider-arrow prev">◀</div>' +
-                            '<div class="goods-slider-arrow next">▶</div>' +
+                            '<div class="goods-slider-arrow next">▶</div>'  +
+                            '<div class="slide-number">' +(currentIndex+1)+" / "+ $items.length + '</div>'+
                             '</div>';
+
           $('.goods_content_{mainData.sno}{mainData.groupSno}').append(controlsHtml);
 
-          // 현재 슬라이드 인덱스
-          var currentIndex = 0;
+
 
           // 이전 버튼 클릭 이벤트
           $('.goods-slider-arrow.prev').on('click', function() {
@@ -334,21 +357,7 @@
               }
           });
 
-          // 슬라이드 업데이트 함수
-          function updateSlide() {
-              // 모든 상품에서 active 클래스 제거
-              $items.removeClass('active');
 
-              // 현재 인덱스의 상품에만 active 클래스 추가
-              $items.eq(currentIndex).addClass('active');
-
-              // 버튼 상태 업데이트 (첫/마지막 슬라이드에서 비활성화)
-              $('.goods-slider-arrow.prev').css('opacity', currentIndex === 0 ? 0.5 : 1);
-              $('.goods-slider-arrow.next').css('opacity', currentIndex === $items.length - 1 ? 0.5 : 1);
-          }
-
-          // 초기 버튼 상태 설정
-          updateSlide();
       }, 500);
   }
   //-->
