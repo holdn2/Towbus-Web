@@ -373,7 +373,215 @@
 
       // 슬라이더 기능 추가
       initProductSlider();
+
+      // 이벤트 위임: 문서 레벨에서 슬라이드 버튼 클릭 이벤트 처리
+      $(document).on('click', '.goods-slider-arrow.prev', function() {
+          if (window.currentIndex > 0) {
+              window.currentIndex--;
+              updateSlide();
+          }
+      });
+
+      $(document).on('click', '.goods-slider-arrow.next', function() {
+          if (window.currentIndex < window.$items.length - 1) {
+              window.currentIndex++;
+              updateSlide();
+          }
+      });
   });
+
+  // 전역 변수 선언
+  window.currentIndex = 0;
+  window.$items = null;
+
+  // 슬라이드 업데이트 함수 (전역으로 이동)
+  function updateSlide() {
+      window.$items.removeClass('active');
+      window.$items.eq(window.currentIndex).addClass('active');
+
+      // 기존 제품 설명 요소 제거
+      $('.goods-product-wrapper').remove();
+
+      // 현재 인덱스에 따라 다른 제품 정보 표시
+      var mainPageProductWrapper;
+      if (window.currentIndex === 0) {
+          // 샴푸바 정보
+          mainPageProductWrapper = getShampooContent();
+      } else {
+          // 예시 비누 정보
+          mainPageProductWrapper = getSoapContent();
+      }
+
+      // 새 제품 설명 추가
+      $('.goods_content_{mainData.sno}{mainData.groupSno}').append(mainPageProductWrapper);
+
+      // 버튼 상태 업데이트
+      $('.goods-slider-arrow.prev').css('opacity', window.currentIndex === 0 ? 0.5 : 1);
+      $('.goods-slider-arrow.next').css('opacity', window.currentIndex === window.$items.length - 1 ? 0.5 : 1);
+  }
+
+  // 샴푸바 콘텐츠 생성 함수 (전역으로 이동)
+  function getShampooContent() {
+      var shampooTitle = "조약돌 샴푸바";
+
+      // 슬라이더 컨트롤 추가
+      var controlsHtml = '<div class="goods-slider-controls">' +
+                        '<div class="goods-slider-button-wrapper">'+
+                        '<div class="goods-slider-arrow prev">◀</div>' +
+                        '<div class="slide-number">' +
+                        '<span class="goods-slide-current">'+(window.currentIndex+1)+'</span>'+
+                        '<span>'+"/"+'</span>'+
+                        '<span>'+window.$items.length+'</span>' +
+                        '</div>'+
+                        '<div class="goods-slider-arrow next">▶</div>'  +
+                        '</div>'+
+                        '</div>';
+
+      // 샴푸바 채팅 내용
+      var chatAreaShampoo = '<div class="goods-desc-chatarea">'+
+                          '<div class="goods-chatLeft">'+
+                            '<span class="goods-chatLeft-text">'+
+                            "요즘 두피가 너무 간지럽고 건조해"+
+                            '</span>'+
+                          '</div>'+
+                          '<div class="goods-chatLeft">'+
+                            '<span class="goods-chatLeft-text">'+
+                            "자연성분의 좋은 제품 없을까?"+
+                            '</span>'+
+                          '</div>'+
+                          '<div style="width:1px; height:12px"/>'+
+                          '<div class="goods-chatRight">'+
+                            '<span class="goods-chatRight-text">'+
+                            "토버스의"+
+                            '</span>'+
+                          '</div>'+
+                          '<div class="goods-chatRight">'+
+                            '<span class="goods-chatRight-text">'+
+                            '<span class="goods-chatRight-bold">'+
+                              "고보습, 약산성 조약돌 샴푸바"+
+                            '</span>'+
+                            "는 어때?"+
+                            '</span>'+
+                          '</div>'+
+                          '<div class="goods-chatRight">'+
+                            '<span class="goods-chatRight-text">'+
+                            "자연성분이라 어쩌고저쩌고 히얄로어쩌고"+
+                            '<br/>'+
+                            "무슨무슨 성분때문에 두피에 아주좋아"+
+                            '</span>'+
+                          '</div>'+
+                          '<div class="goods-chatRight">'+
+                            '<span class="goods-chatRight-text">'+
+                            "지금 "+
+                            '<span class="goods-chatRight-bold">'+
+                            "2025 리뉴얼 프로모션"+
+                            '</span>'+
+                            "으로"+
+                            '<br/>'+
+                            "20% 세일도 하더라구~ 한번 둘러봐!"+
+                            '</span>'+
+                          '</div>'+
+                          '</div>';
+
+      // 샴푸바 버튼
+      var goToShampooBtn = '<a href="http://towbus.kr/goods/goods_view.php?goodsNo=1000000009&mtn=1%5E%7C%5EBest+Product%5E%7C%5En">'+
+                          '<button class="goods-go-btn">'+
+                          "샴푸바 보러가기"+
+                          '</button>'+
+                          '</a>';
+
+      // 메인페이지 샴푸 설명
+      var descShampoo = '<div class="goods-desc-wrapper">'+
+                      '<div class="goods-desc-header">'+
+                        '<img class="goods-desc-logo" src="../img/towbuslogo/towbuslogo.png" alt="logo"/>'+
+                        (true&&controlsHtml)+
+                      '</div>'+
+                      '<h1 class="goods-desc-title">' + shampooTitle + '</h1>' +
+                       chatAreaShampoo+
+                      '</div>';
+
+      // 전체 래퍼
+      return '<div class="goods-product-wrapper">'+
+             descShampoo +
+             goToShampooBtn +
+             '</div>';
+  }
+
+  // 예시 비누 콘텐츠 생성 함수 (전역으로 이동)
+  function getSoapContent() {
+      var soapTitle = "예시 비누";
+
+      // 슬라이더 컨트롤 추가
+      var controlsHtml = '<div class="goods-slider-controls">' +
+                        '<div class="goods-slider-button-wrapper">'+
+                        '<div class="goods-slider-arrow prev">◀</div>' +
+                        '<div class="slide-number">' +
+                        '<span class="goods-slide-current">'+(window.currentIndex+1)+'</span>'+
+                        '<span>'+"/"+'</span>'+
+                        '<span>'+window.$items.length+'</span>' +
+                        '</div>'+
+                        '<div class="goods-slider-arrow next">▶</div>'  +
+                        '</div>'+
+                        '</div>';
+
+      // 비누 채팅 내용
+      var chatAreaSoap = '<div class="goods-desc-chatarea">'+
+                      '<div class="goods-chatLeft">'+
+                        '<span class="goods-chatLeft-text">'+
+                        "우와 토버스다"+
+                        '</span>'+
+                      '</div>'+
+                      '<div class="goods-chatLeft">'+
+                        '<span class="goods-chatLeft-text">'+
+                        "좀 잘하고 싶은데 방법이 없나??"+
+                        '</span>'+
+                      '</div>'+
+                      '<div style="width:1px; height:12px"/>'+
+                      '<div class="goods-chatRight">'+
+                        '<span class="goods-chatRight-text">'+
+                        "쉽지 않아..."+
+                        '</span>'+
+                      '</div>'+
+                      '<div class="goods-chatRight">'+
+                        '<span class="goods-chatRight-text">'+
+                        '<span class="goods-chatRight-bold">'+
+                          "아무튼 이 비누"+
+                        '</span>'+
+                        "는 어때?"+
+                        '</span>'+
+                      '</div>'+
+                      '<div class="goods-chatRight">'+
+                        '<span class="goods-chatRight-text">'+
+                        "진짜 좋은거지롱"+
+                        '<br/>'+
+                        "아까워서 샴푸바 쓰는 중!"+
+                        '</span>'+
+                      '</div>'+
+                      '</div>';
+
+      // 비누 버튼
+      var goToSoapBtn = '<a href="http://towbus.kr/goods/goods_view.php?goodsNo=1000000010">'+
+                      '<button class="goods-go-btn">'+
+                      "예시 비누 보러가기"+
+                      '</button>'+
+                      '</a>';
+
+      // 메인페이지 비누 설명
+      var descSoap = '<div class="goods-desc-wrapper">'+
+                  '<div class="goods-desc-header">'+
+                    '<img class="goods-desc-logo" src="../img/towbuslogo/towbuslogo.png" alt="logo"/>'+
+                    (true&&controlsHtml)+
+                  '</div>'+
+                  '<h1 class="goods-desc-title">' + soapTitle + '</h1>' +
+                   chatAreaSoap+
+                  '</div>';
+
+      // 전체 래퍼
+      return '<div class="goods-product-wrapper">'+
+             descSoap +
+             goToSoapBtn +
+             '</div>';
+  }
 
   function gd_get_list_{mainData.sno}{mainData.groupSno}(page) {
       $.get('../goods/goods_main.php', {'mode' : 'get_main', 'more' : page, 'sno' : '{mainData.sno}', 'groupSno' : '{mainData.groupSno}'}, function (data) {
@@ -393,126 +601,32 @@
 
   // 상품 슬라이더 초기화 함수
   function initProductSlider() {
+      // 약간의 지연 추가 (DOM이 완전히 로드된 후 실행)
       setTimeout(function() {
-          var $items = $('.goods_content_{mainData.sno}{mainData.groupSno} ul > li');
+          // 상품 아이템 선택 (li 태그 선택)
+          window.$items = $('.goods_content_{mainData.sno}{mainData.groupSno} ul > li');
 
-          if ($items.length <= 1) return;
+          if (window.$items.length <= 1) return; // 상품이 1개 이하면 슬라이더 적용 안함
 
-          // 기존 내용 유지
-          $items.removeClass('active');
-          $items.first().addClass('active');
+          // 모든 상품에서 active 클래스 제거
+          window.$items.removeClass('active');
 
-          // 슬라이더 컨트롤이 있으면 제거
-          $('.goods-slider-controls, .slide-number').remove();
-          // 현재 슬라이드 인덱스
-          var currentIndex = 0;
+          // 첫번째 상품에만 active 클래스 추가
+          window.$items.first().addClass('active');
 
-          // 슬라이드 업데이트 함수 수정
-          function updateSlide() {
-              $items.removeClass('active');
-              $items.eq(currentIndex).addClass('active');
+          // 이미 슬라이더 컨트롤이 있으면 제거
+          $('.goods-slider-controls, .slide-number, .goods-product-wrapper').remove();
 
-              // 슬라이드 번호 업데이트
-              $('.slide-number').text((currentIndex+1 ) + ' / ' + $items.length);
+          // 현재 슬라이드 인덱스 초기화
+          window.currentIndex = 0;
 
-              // 버튼 상태 업데이트
-              $('.goods-slider-arrow.prev').css('opacity', currentIndex === 0 ? 0.5 : 1);
-              $('.goods-slider-arrow.next').css('opacity', currentIndex === $items.length - 1 ? 0.5 : 1);
-          }
-          // 슬라이더 컨트롤 추가
-          var controlsHtml = '<div class="goods-slider-controls">' +
-                            '<div class="goods-slider-button-wrapper">'+
-                            '<div class="goods-slider-arrow prev">◀</div>' +
-                            '<div class="slide-number">' +'<span class="goods-slide-current">'+(currentIndex+1)+'</span>'+'<span>'+"/"+'</span>'+ '<span>'+$items.length+'</span>' + '</div>'+
-                            '<div class="goods-slider-arrow next">▶</div>'  +
-                            '</div>'+
-                            '</div>';
-          var chatAreaShampoo = '<div class="goods-desc-chatarea">'+
-                              '<div class="goods-chatLeft">'+
-                                '<span class="goods-chatLeft-text">'+
-                                "요즘 두피가 너무 간지럽고 건조해"+
-                                '</span>'+
-                              '</div>'+
-                              '<div class="goods-chatLeft">'+
-                                '<span class="goods-chatLeft-text">'+
-                                "자연성분의 좋은 제품 없을까?"+
-                                '</span>'+
-                              '</div>'+
-                              '<div style="width:1px; height:4px"/>'+
-                              '<div class="goods-chatRight">'+
-                                '<span class="goods-chatRight-text">'+
-                                "토버스의"+
-                                '</span>'+
-                              '</div>'+
-                              '<div class="goods-chatRight">'+
-                                '<span class="goods-chatRight-text">'+
-                                '<span class="goods-chatRight-bold">'+
-                                  "고보습, 약산성 조약돌 샴푸바"+
-                                '</span>'+
-                                "는 어때?"+
-                                '</span>'+
-                              '</div>'+
-                              '<div class="goods-chatRight">'+
-                                '<span class="goods-chatRight-text">'+
-                                "자연성분이라 어쩌고저쩌고 히얄로어쩌고"+
-                                '<br/>'+
-                                "무슨무슨 성분때문에 두피에 아주좋아"+
-                                '</span>'+
-                              '</div>'+
-                              '<div class="goods-chatRight">'+
-                                '<span class="goods-chatRight-text">'+
-                                "지금 "+
-                                '<span class="goods-chatRight-bold">'+
-                                "2025 리뉴얼 프로모션"+
-                                '</span>'+
-                                "으로"+
-                                '<br/>'+
-                                "20% 세일도 하더라구~ 한번 둘러봐!"+
-                                '</span>'+
-                              '</div>'+
-                              '</div>'
-
-
-          // 메인페이지 제품별 설명
-          var descProduct = '<div class="goods-desc-wrapper">'+
-                          '<div class="goods-desc-header">'+
-                            '<img class="goods-desc-logo" src="../img/towbuslogo/towbuslogo.png" alt="logo"/>'+
-                            (true&&controlsHtml)+
-                          '</div>'+
-                          '<h1 class="goods-desc-title">' + "조약돌 샴푸바" + '</h1>' +
-                           chatAreaShampoo+
-                          '</div>';
-
-          var goToProductBtn = '<button class="goods-go-btn">'+
-                              "샴푸바 보러가기"+
-                              '</button>'
-
-          var mainPageProductWrapper = '<div class="goods-product-wrapper">'+
-                                       descProduct +
-                                       goToProductBtn +
-                                       '</div>'+
-                                      '</div>'
-
+          // 초기 제품 정보 추가 (첫 번째 슬라이드는 샴푸바)
+          var mainPageProductWrapper = getShampooContent();
           $('.goods_content_{mainData.sno}{mainData.groupSno}').append(mainPageProductWrapper);
 
-
-
-          // 이전 버튼 클릭 이벤트
-          $('.goods-slider-arrow.prev').on('click', function() {
-              if (currentIndex > 0) {
-                  currentIndex--;
-                  updateSlide();
-              }
-          });
-
-          // 다음 버튼 클릭 이벤트
-          $('.goods-slider-arrow.next').on('click', function() {
-              if (currentIndex < $items.length - 1) {
-                  currentIndex++;
-                  updateSlide();
-              }
-          });
-
+          // 초기 버튼 상태 설정
+          $('.goods-slider-arrow.prev').css('opacity', window.currentIndex === 0 ? 0.5 : 1);
+          $('.goods-slider-arrow.next').css('opacity', window.currentIndex === window.$items.length - 1 ? 0.5 : 1);
 
       }, 500);
   }
