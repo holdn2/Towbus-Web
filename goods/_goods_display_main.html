@@ -218,6 +218,9 @@
     flex-direction: column;
     border: 1px solid var(--towbus-blue-500, #5882a8);
   }
+  .goods-desc-title-img {
+    width: 130px;
+  }
 
   .goods-desc-wrapper {
     display: flex;
@@ -242,40 +245,21 @@
     z-index: 100;
     display: flex;
     flex-direction: row; /* 세로로 배치 */
-    gap: 10px; /* 버튼 사이 간격 */
   }
   .goods-slider-button-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 14px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 87px;
   }
 
   .goods-slider-arrow {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid #ddd;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font-size: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .goods-slider-arrow:hover {
-    background: #fff;
-  }
-
-  .goods-slider-arrow.prev {
-    margin-left: 0;
-  }
-
-  .goods-slider-arrow.next {
-    margin-right: 0;
   }
 
   /* 슬라이드 번호 표시 스타일 추가 */
@@ -292,12 +276,6 @@
     color: #5882a8;
     font-size: 16px;
     font-weight: 700;
-  }
-
-  .goods-desc-title {
-    font-size: 22px;
-    font-weight: 500;
-    color: #5882a8;
   }
 
   /* 채팅 부분 */
@@ -351,9 +329,21 @@
     border-top: 1px solid var(--towbus-blue-500, #5882a8);
     padding: 13px 25px;
     height: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .goods-go-btn-text {
     font-size: 20px;
     font-weight: 500;
     color: #5882a8;
+  }
+  .goods-go-btn-img {
+    width: 16px;
+    height: 16px;
+    align-self: center;
   }
 </style>
 
@@ -428,18 +418,20 @@
 
   // 샴푸바 콘텐츠 생성 함수 (전역으로 이동)
   function getShampooContent() {
-      var shampooTitle = "조약돌 샴푸바";
-
       // 슬라이더 컨트롤 추가
       var controlsHtml = '<div class="goods-slider-controls">' +
                         '<div class="goods-slider-button-wrapper">'+
-                        '<div class="goods-slider-arrow prev">◀</div>' +
+                        '<div class="goods-slider-arrow prev">'+
+                        '<img src="../img/towbusIcon/mainGoodsArrowLeft.png"/>'+
+                        '</div>' +
                         '<div class="slide-number">' +
                         '<span class="goods-slide-current">'+(window.currentIndex+1)+'</span>'+
                         '<span>'+"/"+'</span>'+
                         '<span>'+window.$items.length+'</span>' +
                         '</div>'+
-                        '<div class="goods-slider-arrow next">▶</div>'  +
+                        '<div class="goods-slider-arrow next">'+
+                        '<img src="../img/towbusIcon/mainGoodsArrowRight.png"/>'+
+                        '</div>' +
                         '</div>'+
                         '</div>';
 
@@ -492,17 +484,20 @@
       // 샴푸바 버튼
       var goToShampooBtn = '<a href="http://towbus.kr/goods/goods_view.php?goodsNo=1000000009&mtn=1%5E%7C%5EBest+Product%5E%7C%5En">'+
                           '<button class="goods-go-btn">'+
+                          '<span class="goods-go-btn-text">'+
                           "샴푸바 보러가기"+
+                          '</span>'+
+                          '<img class="goods-go-btn-img" src="../img/towbusIcon/mainGoodsButtonArrow.png"/>'+
                           '</button>'+
                           '</a>';
 
       // 메인페이지 샴푸 설명
       var descShampoo = '<div class="goods-desc-wrapper">'+
                       '<div class="goods-desc-header">'+
-                        '<img class="goods-desc-logo" src="../img/towbuslogo/towbuslogo.png" alt="logo"/>'+
+                        '<img class="goods-desc-logo" src="../img/towbuslogo/mainGoodsTowbuslogo.png" alt="logo"/>'+
                         (true&&controlsHtml)+
                       '</div>'+
-                      '<h1 class="goods-desc-title">' + shampooTitle + '</h1>' +
+                      '<img class="goods-desc-title-img" src="../img/textImg/mainpageGoodsText/shampooText.png"/>'+
                        chatAreaShampoo+
                       '</div>';
 
@@ -515,18 +510,20 @@
 
   // 예시 비누 콘텐츠 생성 함수 (전역으로 이동)
   function getSoapContent() {
-      var soapTitle = "예시 비누";
-
       // 슬라이더 컨트롤 추가
       var controlsHtml = '<div class="goods-slider-controls">' +
                         '<div class="goods-slider-button-wrapper">'+
-                        '<div class="goods-slider-arrow prev">◀</div>' +
+                        '<div class="goods-slider-arrow prev">'+
+                        '<img src="../img/towbusIcon/mainGoodsArrowLeft.png"/>'+
+                        '</div>' +
                         '<div class="slide-number">' +
                         '<span class="goods-slide-current">'+(window.currentIndex+1)+'</span>'+
                         '<span>'+"/"+'</span>'+
                         '<span>'+window.$items.length+'</span>' +
                         '</div>'+
-                        '<div class="goods-slider-arrow next">▶</div>'  +
+                        '<div class="goods-slider-arrow next">'+
+                        '<img src="../img/towbusIcon/mainGoodsArrowRight.png"/>'+
+                        '</div>' +
                         '</div>'+
                         '</div>';
 
@@ -566,19 +563,22 @@
                       '</div>';
 
       // 비누 버튼
-      var goToSoapBtn = '<a href="http://towbus.kr/goods/goods_view.php?goodsNo=1000000010">'+
-                      '<button class="goods-go-btn">'+
-                      "예시 비누 보러가기"+
-                      '</button>'+
-                      '</a>';
+      var goToSoapBtn = '<a href="http://towbus.kr/goods/goods_view.php?goodsNo=1000000010&mtn=1%5E%7C%5EBest+Product%5E%7C%5En">'+
+                          '<button class="goods-go-btn">'+
+                          '<span class="goods-go-btn-text">'+
+                          "예시 비누 보러가기"+
+                          '</span>'+
+                          '<img class="goods-go-btn-img" src="../img/towbusIcon/mainGoodsButtonArrow.png"/>'+
+                          '</button>'+
+                          '</a>';
 
       // 메인페이지 비누 설명
       var descSoap = '<div class="goods-desc-wrapper">'+
                   '<div class="goods-desc-header">'+
-                    '<img class="goods-desc-logo" src="../img/towbuslogo/towbuslogo.png" alt="logo"/>'+
+                    '<img class="goods-desc-logo" src="../img/towbuslogo/mainGoodsTowbuslogo.png" alt="logo"/>'+
                     (true&&controlsHtml)+
                   '</div>'+
-                  '<h1 class="goods-desc-title">' + soapTitle + '</h1>' +
+                  '<img class="goods-desc-title-img" src="../img/textImg/mainpageGoodsText/shampooText.png"/>'+
                    chatAreaSoap+
                   '</div>';
 
