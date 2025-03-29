@@ -1,14 +1,185 @@
-{*** 회사소개 | service/company.php ***}
-{ # header }
+{*** 회사소개 | service/company.php ***} { # header }
+<style>
+  /* 전체 페이지 레이아웃 구조 스타일 */
+  html,
+  body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url("../img/towbusBackground/towbusBg.png"); /* 배경 질감 이미지 경로 */
+    background-repeat: repeat;
+    background-size: cover; /* 배경 이미지 전체 커버 */
+    background-position: center;
+    width: 100vw; /* 뷰포트 너비로 설정 */
+    overflow-y: auto; /* 세로 스크롤 허용 */
+  }
+
+  /* 주요 컨테이너 설정 */
+  #wrap,
+  #container,
+  #contents,
+  .sub_content,
+  .content_box,
+  .service_cont,
+  #footer_wrap,
+  #footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow-x: hidden !important; /* 가로 스크롤만 방지 */
+  }
+
+  #container {
+    flex: 1 0 auto; /* 늘어날 수 있지만 줄어들지 않음 */
+    position: relative;
+    z-index: 1;
+    min-height: 70vh; /* 최소 높이 설정 */
+    padding-bottom: 50px; /* 푸터와의 간격 */
+  }
+
+  #footer_wrap {
+    width: 100%;
+    position: relative; /* relative로 설정하여 스크롤과 함께 이동 */
+    z-index: 100;
+  }
+
+  /* 회사소개 페이지 컨텐츠 영역 스타일 */
+  .service_cont {
+    min-height: 50vh; /* 최소 높이 설정 */
+    padding-bottom: 50px; /* 푸터와 간격 확보 */
+    overflow-y: visible; /* 세로 스크롤 허용 */
+  }
+
+  /* 회사 소개 내용 스타일 */
+  .service_company {
+    margin-top: 30px;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+
+  /* 새로운 컨텐츠 영역 스타일 */
+  .company_additional_content {
+    margin-top: 50px;
+    margin-bottom: 50px; /* 푸터와의 간격 */
+    text-align: center;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* 비전 섹션 스타일 */
+  .vision-section {
+    background-color: #f7f7f7;
+    padding: 40px 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .vision-section h3 {
+    color: #5882a8;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .vision-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* 이미지 최대 너비 제한 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 전체 래퍼 */
+  #wrap {
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+    width: 100%;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    function adjustLayout() {
+      // 스크롤 허용
+      $("body").css({
+        "overflow-y": "auto",
+      });
+
+      // 배경 이미지가 전체 너비를 커버하도록 설정
+      $("body").css({
+        width: "100vw",
+        "background-size": "cover",
+      });
+
+      // 모든 컨테이너에 전체 너비 적용
+      $(
+        "#wrap, #container, #contents, .sub_content, .content_box, .service_cont, #footer_wrap, #footer"
+      ).css({
+        width: "100%",
+        "max-width": "100%",
+      });
+    }
+
+    // 초기 로드 및 리사이즈 시 레이아웃 조정
+    adjustLayout();
+    $(window).resize(adjustLayout);
+
+    // 이미지 로드 완료 후 레이아웃 조정
+    $(window).on("load", function () {
+      adjustLayout();
+    });
+  });
+</script>
+
 <div class="content_box">
-    <div class="service_tit">
-        <h2>{=__('회사소개')}</h2>
+  <div class="service_tit">
+    <h2>{=__('회사소개')}</h2>
+  </div>
+  <div class="service_cont">
+    <div class="service_company">{=nl2br(company)}</div>
+
+    <!-- 새로운 컨텐츠 영역 추가 -->
+    <div class="company_additional_content">
+      <div class="vision-section">
+        <h3>토버스의 비전</h3>
+        <p>자연과 함께하는 지속 가능한 아름다움을 추구합니다.</p>
+        <p>지연과 함께하는 지속 가능한 아름다움을 추구합니다.</p>
+      </div>
+
+      <div class="vision-section" style="margin-top: 40px">
+        <h3>우리의 철학</h3>
+        <p>고객을 위해 물리지 않는 정직한 기업이 될 것을 약속드립니다.</p>
+        <p>
+          NHN커머스의 쇼핑 솔루션으로 많은 고객님들과 함께 커가는 NHN커머스가
+          되겠습니다.
+        </p>
+        <p>감사합니다.</p>
+      </div>
     </div>
-    <div class="service_cont">
-        <div class="service_company">
-            {=nl2br(company)}
-        </div>
-    </div>
+  </div>
 </div>
 <!-- //content_box -->
+
 { # footer }

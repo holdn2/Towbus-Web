@@ -23,6 +23,68 @@
   defer
 ></script>
 
+<!-- 전체 레이아웃 및 배경 이미지 스타일 -->
+<style>
+  /* 전체 레이아웃 문제 해결을 위한 스타일 */
+  html,
+  body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+  }
+
+  body {
+    background-image: url("../img/towbusBackground/towbusBg.png"); /* 배경 질감 이미지 경로 */
+    background-repeat: repeat;
+    background-size: cover; /* 배경 이미지가 전체를 커버하도록 변경 */
+    background-position: center;
+    min-height: 100vh; /* 최소 높이 설정 */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 모든 주요 컨테이너에 최대 너비 설정 */
+  .main_visual,
+  .main_content,
+  .main-category-button-container,
+  .main_goods_cont,
+  #footer_wrap,
+  #footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* 이미지 최대 너비 제한 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 전체 래퍼 스타일 */
+  #wrap {
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+    width: 100%;
+    flex: 1;
+  }
+
+  #container {
+    flex: 1 0 auto;
+  }
+
+  #footer_wrap {
+    position: relative;
+    width: 100%;
+    z-index: 100;
+  }
+</style>
+
 {=includeWidget('proc/_populate.html', 'sno', '100')}
 <div class="main_visual">
   {=includeWidget('proc/_slider_banner.html', 'bannerCode', '511517418')}
@@ -51,6 +113,28 @@
 
     // 이미지에 로딩 지연 속성 추가
     $("img").attr("loading", "lazy");
+
+    // 화면 크기 변경 시 레이아웃 조정
+    $(window).on("resize", function () {
+      // 화면 너비에 맞게 컨테이너 너비 재설정
+      $(
+        ".main_visual, .main_content, .main-category-button-container, .main_goods_cont, #footer_wrap, #footer"
+      )
+        .css("width", "100%")
+        .css("max-width", "100%");
+
+      // 배경 이미지가 전체를 커버하도록 설정
+      $("body").css({
+        width: "100vw",
+        "background-size": "cover",
+      });
+    });
+
+    // 초기 로드 시 배경 이미지 설정
+    $("body").css({
+      width: "100vw",
+      "background-size": "cover",
+    });
   });
 </script>
 
@@ -86,6 +170,9 @@
     justify-content: center;
     position: relative;
     margin-top: 178px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   "
 >
   <img
@@ -109,10 +196,20 @@
   style="
     display: flex;
     width: 100%;
+    max-width: 100%;
     justify-content: center;
     padding-top: 160px;
+    overflow: hidden;
   "
 >
-  <img src="../img/towbusMap/towbusMap.png" alt="제주도 지도" />
+  <img
+    src="../img/towbusMap/towbusMap.png"
+    alt="제주도 지도"
+    style="max-width: 100%; height: auto"
+  />
 </div>
+
+<!-- footer 공간 확보를 위해 -->
+<div style="clear: both; height: 160px; width: 100%"></div>
+
 { # footer }
