@@ -1,4 +1,30 @@
+<!-- !공지사항 내용 -->
 {*** 목록 | list.php ***}
+<style>
+    .content{
+        height: 100%;
+    }
+    .board_zone_tit_link{
+        margin-top: 120px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+    .notice_category_tit_wrap{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        margin-bottom: 10px;
+
+        font-size: 20px;
+    }
+    #footer_wrap {
+        position: absolute;
+        bottom: 0;
+    }
+   
+</style>
 <!--{ ? bdList.cfg.bdHeader && !inList}-->
 <div class="addition_zone">
     <p>{=bdList.cfg.bdHeader}</p>
@@ -6,8 +32,23 @@
 <!--{/}-->
 <div class="board_zone_sec">
     <!--{?!inList}-->
-    <div class="board_zone_tit">
-        <h2>{=__(bdList.cfg.bdNm)}</h2>
+    <div class="board_zone_tit_link">
+        <h2>
+            <a href="http://towbus78.godomall.com/board/list.php?bdId=notice"
+              >Notice</a>
+        </h2>
+        <h2>
+            <a href="http://towbus78.godomall.com/board/list.php?bdId=qa"
+              >FAQ 1:1문의</a>
+        </h2>
+    </div>
+    <div class="notice_category_tit_wrap">
+        <a href="http://towbus78.godomall.com/board/list.php?bdId=notice"
+          >전체</a>
+        <a href="http://towbus78.godomall.com/board/list.php?bdId=event"
+          >이벤트</a>
+        <a href="http://towbus78.godomall.com/board/list.php?bdId=notice"
+          >체험단 모집</a>
     </div>
     <!--{/}-->
     <div class="board_zone_cont">
@@ -213,6 +254,7 @@
 
     </div>
     <!-- //board_zone_cont -->
+     
 </div>
 <!-- //board_zone_sec -->
 <!--{?bdList.cfg.bdFooter && !inList}-->
