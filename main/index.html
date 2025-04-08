@@ -29,6 +29,29 @@
     background-image: url("../img/towbusBackground/towbusBg.png") !important;
   }
 
+  /* 메인 화면 헤더 관련 스타일링. 특정 시점 이후 배경색 추가되도록 변경 */
+  .header_top_cont {
+    background: none !important;
+    transition: background 0.3s ease;
+  }
+  .header_top_cont.scrolled {
+    background: #fff !important;
+  }
+  .top_member_box {
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  .top_member_box > li a {
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  .header_top_cont.scrolled .top_member_box {
+    color: #000;
+  }
+  .header_top_cont.scrolled .top_member_box > li a {
+    color: #000;
+  }
+
   /* 모든 주요 컨테이너에 최대 너비 설정 */
   .main_visual,
   .main_content,
@@ -119,6 +142,15 @@
     $("body").css({
       width: "100vw",
       "background-size": "cover",
+    });
+
+    // 스크롤 이벤트 처리. 헤더 관련 배경색
+    $(window).on("scroll", function () {
+      if ($(this).scrollTop() > 750) {
+        $(".header_top_cont").addClass("scrolled");
+      } else {
+        $(".header_top_cont").removeClass("scrolled");
+      }
     });
   });
 </script>
