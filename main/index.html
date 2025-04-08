@@ -35,7 +35,7 @@
     transition: background 0.3s ease;
   }
   .header_top_cont.scrolled {
-    background: rgba(137, 137, 137, 0.1) !important;
+    background: #fff !important;
   }
   .top_member_box {
     color: #fff;
@@ -144,12 +144,36 @@
       "background-size": "cover",
     });
 
-    // 스크롤 이벤트 처리. 헤더 관련 배경색
+    // 스크롤 이벤트 처리. 헤더 관련 배경색. 로고 및 아이콘 동적으로 변경
     $(window).on("scroll", function () {
-      if ($(this).scrollTop() > 750) {
-        $(".header_top_cont").addClass("scrolled");
+      const scrollTop = $(this).scrollTop();
+      const $header = $(".header_top_cont");
+      const $headerKebabBtn = $(".btn_all_menu_open img");
+      const $headerLogo = $(".h1_logo img");
+      const $headerCart = $(".cartIcon img");
+      const $headerMypage = $(".mypageIcon img");
+
+      if (scrollTop > 750) {
+        $headerKebabBtn.attr(
+          "src",
+          "../img/headerimgs/btn_kebab_header_black.png"
+        );
+        $headerLogo.attr(
+          "src",
+          "../img/headerimgs/towbusLogo_header_black.png"
+        );
+        $header.addClass("scrolled");
+        $headerCart.attr("src", "../img/headerimgs/btn_cart_header_black.png");
+        $headerMypage.attr(
+          "src",
+          "../img/headerimgs/btn_mypage_header_black.png"
+        );
       } else {
-        $(".header_top_cont").removeClass("scrolled");
+        $headerKebabBtn.attr("src", "../img/common/btn/btn_allmenu_please.png");
+        $headerLogo.attr("src", "../img/headerimgs/towbusLogo_header.png");
+        $header.removeClass("scrolled");
+        $headerCart.attr("src", "../img/headerimgs/btn_cart_header.png");
+        $headerMypage.attr("src", "../img/headerimgs/btn_mypage_header.png");
       }
     });
   });
