@@ -211,7 +211,7 @@
 }
 
 .top_member_box > li:not(:has(.top_mypage_cont)):nth-child(n + 2) a {
-  padding-left: 20px;
+  /* padding-left: 20px; */
 }
 
 .top_member_box > li:has(.top_mypage_cont) {
