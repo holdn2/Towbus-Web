@@ -34,6 +34,58 @@
     .goods_list_cont{
         margin: 0 !important;
     }
+
+    .txt-manual-wrapper {
+        position: relative;
+        max-height: 1000px;
+        overflow: hidden;
+    }
+
+    .txt-manual-wrapper.collapsed .txt-manual {
+        max-height: 1000px;
+        overflow: hidden;
+        position: relative;
+    }
+    .txt-manual-wrapper.collapsed{
+        display: flex;
+        justify-content: center;
+    }
+
+    .txt-manual-overlay {
+        position: absolute;
+        bottom: 0;
+        height: 200px;
+        width: 860px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .txt-manual-wrapper.expanded {
+        max-height: none;   
+    }
+
+    .txt-manual-wrapper.expanded .txt-manual-overlay {
+        display: none;
+    }
+
+    .txt-manual-toggle {
+        display: block;
+        margin: -50px auto 0;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        z-index: 2;
+        position: relative;
+    }
+
+    /* 접힌 상태에서 margin-top: 20px */
+    .txt-manual-wrapper.expanded + .txt-manual-toggle {
+        margin-top: 10px;   
+    }
    
     /* 배송아이콘 관련 추가 영역 */
     .item_delivery_schedule dd > div{position:relative;}
@@ -54,6 +106,43 @@
     /* // 배송아이콘 관련 추가 영역 */
 
 </style>
+
+<!-- 상품 상세 부분이 너무 길 때 로직 -->
+<script>
+    $(document).ready(function () {
+    const wrapper = $('.txt-manual-wrapper');
+    const toggleBtn = $('.txt-manual-toggle');
+    const manual = $('.txt-manual');
+    const manualHeight = manual.outerHeight();
+    const manualHtml = manual.html().trim();
+    const hasRealContent = manualHtml.length > 0 && manual.find("img, p, div, table, ul, ol, iframe").length > 0;
+
+    if (manualHeight <= 1000 || !hasRealContent) {
+        toggleBtn.hide();
+        overlay.hide();
+        wrapper.removeClass('collapsed expanded');
+        return;
+    }
+
+    wrapper.addClass('collapsed');
+
+    toggleBtn.on('click', function () {
+        // 현재 스크롤 위치 저장
+        const currentScroll = $(window).scrollTop();
+
+        // 클래스 토글
+        wrapper.toggleClass('expanded');
+        wrapper.toggleClass('collapsed');
+
+        const isExpanded = wrapper.hasClass('expanded');
+        $(this).text(isExpanded ? '접기' : '더보기');
+
+        // 스크롤 위치 복원 (더보기 눌러도 화면이 아래로 안 내려가도록)
+        $(window).scrollTop(currentScroll);
+    });
+    });
+</script>
+  
 <script type="text/javascript">
     <!--
     var bdGoodsQaId = '{bdGoodsQaId}';
@@ -2187,11 +2276,17 @@
             <h3>{=__('상품상세정보')}</h3>
             <div class="detail_explain_box">
                 <div class="image-manual"><!-- 이미지 --></div>
-                <div class="txt-manual">
-                    <!-- 상품상세 공통정보 관리를 상세정보 상단에 노출-->
-                    {=gd_isset(goodsView['commonContent'])}
-                    {=gd_isset(goodsView['goodsDescription'])}
-                </div>
+                <!-- 상품 상세가 너무 길 때 (1000px 이상) 가리기-->
+                <div class="txt-manual-wrapper">
+                    <div class="txt-manual">
+                        <!-- 상품상세 공통정보 관리를 상세정보 상단에 노출-->
+                        {=gd_isset(goodsView['commonContent'])}
+                        {=gd_isset(goodsView['goodsDescription'])}
+                    </div>
+                    <div class="txt-manual-overlay"></div>
+                </div>                
+                <!-- 상품상세 자세히 보기 영역-->
+                <button class="txt-manual-toggle">더보기</button>
                 <!--{ ? goodsView['externalVideoFl'] =='y'  && goodsView['externalVideoUrl'] }-->
                 <div style="padding:10px 0;text-align:center" id="external-video">
                     {=gd_youtube_player(goodsView['externalVideoUrl'], goodsView['externalVideoWidth'], goodsView['externalVideoHeight'])}
