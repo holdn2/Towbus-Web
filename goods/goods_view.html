@@ -160,14 +160,14 @@
 </script>
 
 <!-- !!맨위로 보내는 버튼 관련 로직 -->
-<script>
+<!-- <script>
     $(document).ready(function (){
         const scrollTopBtn = $('.scroll_top_btn');
         scrollTopBtn.on('click', function () {
-            $('html, body').animate({ scrollTop: 0 }, 300); // 600ms 동안 부드럽게 이동
+            $(window).animate({ scrollTop: 0 }, 500); // 600ms 동안 부드럽게 이동
         });
     }) 
-</script>
+</script> -->
   
 <script type="text/javascript">
     <!--
@@ -1082,7 +1082,13 @@
     </tr>
 </script>
 
-<button class="scroll_top_btn">▲</button>
+<button 
+  class="scroll_top_btn" 
+  onclick="$('html, body').animate({ scrollTop: 0 }, 500)"
+>
+    ▲
+</button>
+
 <div class="content_box">
     <div class="location_wrap">
         <div class="location_cont">
