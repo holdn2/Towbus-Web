@@ -1637,6 +1637,10 @@ label.check-s.color-white {
   min-height: 500px;
   padding: 0;
 }
+/* !화면 컨텐트 전체에 마진 추가. 푸터에 가려지지 않도록 */
+.content {
+  margin-bottom: 300px;
+}
 /* 서브 메뉴가 왼쪽일때 */
 #contents .sub_content > .side_cont + .content {
   float: left;
@@ -1785,6 +1789,8 @@ label.check-s.color-white {
   /* background-color: #f0ede3; */
   background-color: #f6f6f6;
   color: #5882a8;
+  position: absolute;
+  bottom: 0;
 }
 .towbus-footer-wrapper {
   font-family: "Pretendard";
