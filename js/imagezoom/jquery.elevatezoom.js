@@ -757,6 +757,7 @@ if (typeof Object.create !== "function") {
       }
 
       //container fix
+      // 줌 위치 조정
       self.zoomContainer.css({ top: self.nzOffset.top });
       self.zoomContainer.css({ left: "10px" });
       self.mouseLeft = parseInt(e.pageX - self.nzOffset.left);
