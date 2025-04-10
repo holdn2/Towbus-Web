@@ -318,6 +318,7 @@ if (typeof Object.create !== "function") {
       //create the div's                                                + ""
       //self.zoomContainer = $('<div/>').addClass('zoomContainer').css({"position":"relative", "height":self.nzHeight, "width":self.nzWidth});
 
+      // !줌 위치 조정
       self.zoomContainer = $(
         '<div class="zoomContainer" style="-webkit-transform: translateZ(0);position:absolute;left:10px;top:' +
           self.nzOffset.top +
@@ -757,7 +758,7 @@ if (typeof Object.create !== "function") {
       }
 
       //container fix
-      // 줌 위치 조정
+      // !줌 위치 조정
       self.zoomContainer.css({ top: self.nzOffset.top });
       self.zoomContainer.css({ left: "10px" });
       self.mouseLeft = parseInt(e.pageX - self.nzOffset.left);
