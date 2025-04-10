@@ -804,10 +804,10 @@ body.is-fixed #header_warp::after {
 
 /* 전체 메뉴 */
 .gnb_allmenu_wrap {
-  display: none;
+  /* 전체 메뉴도 body안에 들어오도록 */
   position: fixed;
   top: 0;
-  left: 0;
+  left: calc(50% - 640px);
   width: 400px;
   background: var(--neutrals-gray);
   z-index: 999;

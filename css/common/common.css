@@ -13,27 +13,38 @@
   --font-bold: 700;
 }
 
+/* 모든 페이지 컨텐츠들 넓이 가로 1280px로 고정 */
 html,
 body {
-  width: 100%;
   height: auto;
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* 가로 스크롤 방지 */
+  background: #fff;
+}
+html {
+  display: flex;
+  justify-content: center;
 }
 body {
+  width: 1280px !important;
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-width: 1250px;
-  background-repeat: repeat;
+  min-width: 1280px;
+
+  /* 배경 이미지도 1280px내에 오도록 수정 */
+  background-image: url("../../img/towbusBackground/towbusBg.png");
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 100vw;
   overflow-y: auto;
 }
-
+.header_top_cont {
+  width: 1280px !important;
+}
+/* 모든 페이지 컨텐츠들 넓이 가로 1280px로 고정 */
 audio {
   position: absolute;
   left: 0;
