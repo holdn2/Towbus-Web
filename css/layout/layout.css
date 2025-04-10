@@ -804,7 +804,7 @@ body.is-fixed #header_warp::after {
 
 /* 전체 메뉴 */
 .gnb_allmenu_wrap {
-  /* 전체 메뉴도 body안에 들어오도록 */
+  /* 전체 메뉴도 body안에 들어오도록. 넓이 수정 시 */
   position: fixed;
   top: 0;
   left: calc(50% - 640px);
@@ -1640,6 +1640,7 @@ label.check-s.color-white {
 /* !화면 컨텐트 전체에 마진 추가. 푸터에 가려지지 않도록 */
 .content {
   margin-bottom: 300px;
+  margin-top: 120px;
 }
 /* 서브 메뉴가 왼쪽일때 */
 #contents .sub_content > .side_cont + .content {
@@ -1687,6 +1688,11 @@ label.check-s.color-white {
 .content_box {
   float: left;
   width: 100%;
+  margin-top: 120px;
+  margin-bottom: 300px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 }
 
 /* ------------- 하단 디자인 ------------- */

@@ -12,8 +12,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    min-width: 1250px;
-    height: 3000px; /* 원하는 높이로 조절 가능 */
+    min-width: 1280px;
+    height: 100%; /* 원하는 높이로 조절 가능 */
     background-image: url("../img/towbusBackground/about_towbus_ocean.png");
     background-size: cover;
     background-position: center;
@@ -38,22 +38,17 @@
     margin-right: auto !important;
     overflow-x: hidden !important; /* 가로 스크롤만 방지 */
   }
+
   .content_box {
-    margin-top: 200px;
-    height: 3000px;
+    z-index: 10000;
   }
+
   #container {
     flex: 1 0 auto; /* 늘어날 수 있지만 줄어들지 않음 */
     position: relative;
     z-index: 1;
     min-height: 70vh; /* 최소 높이 설정 */
     padding-bottom: 50px; /* 푸터와의 간격 */
-  }
-
-  #footer_wrap {
-    width: 100%;
-    position: relative; /* relative로 설정하여 스크롤과 함께 이동 */
-    z-index: 100;
   }
 
   /* 회사소개 페이지 컨텐츠 영역 스타일 */
