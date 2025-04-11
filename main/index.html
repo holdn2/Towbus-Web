@@ -17,11 +17,18 @@
   rel="stylesheet"
   href="{=setBrowserCache('../css/plugins/simply-scroll.css')}"
 /> -->
-<script
+<!-- <script
   type="text/javascript"
   src="{=setBrowserCache('../js/simplyScroll.js')}"
   defer
-></script>
+></script> -->
+
+<!-- 페이지 로드 시 최상단 스크롤 이동 -->
+<script>
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+</script>
 
 <!-- 전체 레이아웃 및 배경 이미지 스타일 -->
 <style>
@@ -114,7 +121,7 @@
 ></script> -->
 <script>
   $(() => {
-    $(".js-scroll").simplyScroll();
+    // $(".js-scroll").simplyScroll()
 
     // 이미지에 로딩 지연 속성 추가
     $("img").attr("loading", "lazy");

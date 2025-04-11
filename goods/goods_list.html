@@ -1,3 +1,4 @@
+<!-- !상품 카테고리 들어가서 -->
 {*** 상품 리스트 | goods/goods_list.php ***}
 { # header }
 <style>
@@ -6,6 +7,13 @@
     }
     
 </style>
+<!-- 페이지 로드 시 최상단 스크롤 이동 -->
+<script>
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+</script>
+
 <div class="content">
     <div class="location_wrap">
         <div class="location_cont">

@@ -117,6 +117,13 @@
   }
 </style>
 
+<!-- 페이지 로드 시 최상단 스크롤 이동 -->
+<script>
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+</script>
+
 <script>
   $(document).ready(function () {
     function adjustLayout() {

@@ -116,6 +116,12 @@
     /* // 배송아이콘 관련 추가 영역 */
 
 </style>
+<!-- 페이지 로드 시 최상단 스크롤 이동 -->
+<script>
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+</script>
 
 <!-- !!상품 상세 부분이 너무 길 때 로직 -->
 <script>
