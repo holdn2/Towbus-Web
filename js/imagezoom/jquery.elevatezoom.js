@@ -320,7 +320,7 @@ if (typeof Object.create !== "function") {
 
       // !줌 위치 조정
       self.zoomContainer = $(
-        '<div class="zoomContainer" style="-webkit-transform: translateZ(0);position:absolute;left:10px;top:' +
+        '<div class="zoomContainer" style="-webkit-transform: translateZ(0);position:absolute;left:60px;top:' +
           self.nzOffset.top +
           "px;height:" +
           self.nzHeight +
@@ -760,7 +760,7 @@ if (typeof Object.create !== "function") {
       //container fix
       // !줌 위치 조정
       self.zoomContainer.css({ top: self.nzOffset.top });
-      self.zoomContainer.css({ left: "10px" });
+      self.zoomContainer.css({ left: "60px" });
       self.mouseLeft = parseInt(e.pageX - self.nzOffset.left);
       self.mouseTop = parseInt(e.pageY - self.nzOffset.top);
       //calculate the Location of the Lens
